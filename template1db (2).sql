@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2022 at 05:49 PM
+-- Generation Time: Mar 06, 2022 at 07:42 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -76,11 +76,11 @@ CREATE TABLE `products` (
   `products_price` varchar(11) NOT NULL,
   `products_sales_price` varchar(10) NOT NULL,
   `products_sub_categories` int(10) NOT NULL,
-  `products_promo` varchar(15) NOT NULL DEFAULT '0',
-  `products_deals` varchar(15) NOT NULL DEFAULT '0',
-  `products_new_arrivals` varchar(15) NOT NULL DEFAULT '0',
-  `products_best_sellers` varchar(15) NOT NULL DEFAULT '0',
-  `products_popular` varchar(15) NOT NULL DEFAULT '0',
+  `products_promo` varchar(20) NOT NULL DEFAULT '0',
+  `products_deals` varchar(20) NOT NULL DEFAULT '0',
+  `products_new_arrivals` varchar(20) NOT NULL DEFAULT '0',
+  `products_best_sellers` varchar(20) NOT NULL DEFAULT '0',
+  `products_popular` varchar(20) NOT NULL DEFAULT '0',
   `products_short_description` varchar(255) NOT NULL,
   `products_long_description` text NOT NULL,
   `products_image` varchar(255) NOT NULL DEFAULT 'default.jpg',
@@ -92,9 +92,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`products_id`, `products_name`, `products_price`, `products_sales_price`, `products_sub_categories`, `products_promo`, `products_deals`, `products_new_arrivals`, `products_best_sellers`, `products_popular`, `products_short_description`, `products_long_description`, `products_image`, `products_timestamp`) VALUES
-(1, 'Venza', '5000000', '', 1, '0', '0', 'New arrivals', 'Best bellers', '0', 'Unrestrained and portable active stereo speaker Free from the confines of wires and chords 20 hours of portable capabilities Double-ended Coil Cord with 3.5mm Stereo Plugs Included 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X', 'Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.  Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.', '1287eab20011558404a13a549b8fc776abd0892e.png', '2022-03-03 14:33:34'),
-(2, 'Shirt', '5000', '', 1, '0', '0', 'New arrivals', 'Best bellers', '0', '', '', 'd734a38bd855e4e60458e49de23090d9a2781e89.jpg', '2022-03-03 14:33:39'),
-(3, 'Shoes', '6000', '', 2, '0', '0', '0', '0', '0', '', '', 'default.jpg', '2022-03-03 14:41:26');
+(1, 'Venza', '5000000', '', 1, '0', 'Deals of the day', 'New arrivals', 'Best bellers', '0', 'Unrestrained and portable active stereo speaker Free from the confines of wires and chords 20 hours of portable capabilities Double-ended Coil Cord with 3.5mm Stereo Plugs Included 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X', 'Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.  Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.', '1287eab20011558404a13a549b8fc776abd0892e.png', '2022-03-06 10:41:40'),
+(2, 'Shirt', '5000', '', 1, '0', 'Deals of the day', 'New arrivals', 'Best bellers', '0', '', '', 'd734a38bd855e4e60458e49de23090d9a2781e89.jpg', '2022-03-06 10:40:46'),
+(6, 'socks', '500', '450', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'c7c289dbe7434540ff8958f64d9dcd871314f985.jpg', '2022-03-06 10:40:53'),
+(7, 'gown', '6000', '4000', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'b608120fe8771660ad2ffc62d120258ac057939f.jpg', '2022-03-06 10:41:35');
 
 -- --------------------------------------------------------
 
@@ -107,15 +108,6 @@ CREATE TABLE `products_categories` (
   `products_categories_name` varchar(20) NOT NULL,
   `products_categories_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `products_categories`
---
-
-INSERT INTO `products_categories` (`products_categories_id`, `products_categories_name`, `products_categories_timestamp`) VALUES
-(1, 'Vehicle', '2022-03-03 12:31:13'),
-(2, 'Fashion', '0000-00-00 00:00:00'),
-(3, 'Uncategorized', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -160,7 +152,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `active`, `email`, `password`, `cookies_session`, `timestamp`) VALUES
-(1, 1, 'test@gmail.com', 'password', '625cc4e9bdb55b76a1ea24bd1496d7e9', '2022-03-03 10:02:44');
+(1, 1, 'test@gmail.com', 'password', '2b0e09ff4a5e6395be06462cea99c883', '2022-03-04 15:54:56');
 
 --
 -- Indexes for dumped tables
@@ -222,13 +214,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `products_categories`
 --
 ALTER TABLE `products_categories`
-  MODIFY `products_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `products_categories_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `slider_banner`

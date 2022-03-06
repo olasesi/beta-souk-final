@@ -95,12 +95,7 @@ if(empty($login_array)){
                             <div class="form-group form-forgot">
                                 <input class="form-control" type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])){echo '';} ?>"><!--<a href="">Forgot?</a>-->
                             </div>
-                            <!-- <div class="form-group">
-                                <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="remember-me" name="remember-me" />
-                                    <label for="remember-me">Rememeber me</label>
-                                </div>
-                            </div> -->
+                          
                             <div class="form-group submtit">
                                 <button class="ps-btn ps-btn--fullwidth" type="submit" name="login">Login</button>
                             </div>
@@ -108,36 +103,11 @@ if(empty($login_array)){
                          <div class="ps-form__footer">
                             <p></p>
                             <ul class="ps-list--social">
-                                <!-- <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li> -->
+                               
                             </ul>
                         </div> 
                     </div>
-                    <!-- <div class="ps-tab" id="register">
-                        <div class="ps-form__content">
-                            <h5>Register An Account</h5>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Username or email address">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="form-group submtit">
-                                <button class="ps-btn ps-btn--fullwidth">Login</button>
-                            </div>
-                        </div>
-                        <div class="ps-form__footer">
-                            <p>Connect with:</p>
-                            <ul class="ps-list--social">
-                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                    </div> -->
+                   
                 </div>
             </form>
         </div>

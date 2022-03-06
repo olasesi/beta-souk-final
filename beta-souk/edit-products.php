@@ -133,66 +133,13 @@ $most_popular = 0 ;
 	} 
 
  
-    // if (is_uploaded_file($_FILES['product_image']['tmp_name']) AND $_FILES['product_image']['error'] == UPLOAD_ERR_OK){ 
-         
-    //     if($_FILES['product_image']['size'] > 2097152){ 		//conditions for the file size 2MB
-    //         $errors['editfile_size']="File size is too big. Max file size 2MB";
-    //     }
     
-    //     $editallowed_extensions = array('jpeg', '.png', '.jpg', '.JPG', 'JPEG', '.PNG');		
-    //     $editallowed_mime = array('image/jpeg', 'image/png', 'image/pjpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/x-png');
-    //     $editimage_info = getimagesize($_FILES['product_image']['tmp_name']);
-    //     $ext = substr($_FILES['product_image']['name'], -4);
-        
-        
-        
-        
-    //     if (!in_array($_FILES['product_image']['type'], $editallowed_mime) || !in_array($editimage_info['mime'], $editallowed_mime) || !in_array($ext, $editallowed_extensions)){
-    //         $errors['wrong_upload'] = "Please choose correct file type. JPG or PNG";
-            
-    //     }
-        
-    // }
-
-
-
-
-
 
      //now to edit the product	
      if (empty($errors)){
  
        
-//         if (is_uploaded_file($_FILES['product_image']['tmp_name']) AND $_FILES['product_image']['error'] == UPLOAD_ERR_OK){
-       
-//         $new_name= (string) sha1($_FILES['product_image']['name'] . uniqid('',true));
-//         $new_name .= ((substr($ext, 0, 1) != '.') ? ".{$ext}" : $ext);
-//         $dest = "images/products/".$new_name;
-        
-//         if (move_uploaded_file($_FILES['product_image']['tmp_name'], $dest)) {
-        
-//         $_SESSION['images']['new_name'] = $new_name;
-//         $_SESSION['images']['file_name'] = $_FILES['product_image']['name'];
-        
- 
 
-// // mysqli_query($connect, "UPDATE slider_banner SET slider_banner_image='".$new_name."' WHERE slider_banner_name = '".$slider_banner."'") or die(db_conn_error);
-// //         if (mysqli_affected_rows($connect) == 1) {
-        
-      
-       
-        
-// //}
-
-// } else {
-//         trigger_error('The file could not be moved.');
-//         $errors['not_moved'] = "The file could not be moved.";
-//         unlink ($_FILES['product_image']['tmp_name']);
-//         }	
-
-//     }
-
-//$image_uploaded= (isset($_SESSION['images']['new_name']))?$_SESSION['images']['new_name']:'default.jpg';
 
 mysqli_query($connect, "UPDATE products SET products_name='".$products_name."', products_price = '".$products_price."', products_sales_price = '".$products_sales_price."' , products_sub_categories = '".$cat."', products_promo = '".$hot_promo."', products_deals = '".$deals_of_the_day."', products_new_arrivals = '".$new_arrivals."', products_best_sellers = '".$best_sellers."', products_popular = '".$most_popular."', products_short_description = '".$products_desc_short."', products_long_description= '".$products_desc_long."' WHERE products_id  = '".mysqli_real_escape_string ($connect, $_GET['id'])."'") or die(db_conn_error);
     if (mysqli_affected_rows($connect) == 1) {
@@ -320,7 +267,7 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
 
  include ('../incs-template1/header.php'); ?>
 
-
+<?php include ('../incs-template1/settings.php'); ?>
 
 
 
@@ -349,20 +296,10 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
                                 <div class="ps-widget__header"><img src="img/users/3.jpg" alt="" />
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p><a href="#">username@gmail.com</a></p>
+                                        <p><?=$EMAIL;?></p>
                                     </figure>
                                 </div>
-                                <div class="ps-widget__content">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="icon-user"></i> Account Information</a></li>
-                                        <li><a href="#"><i class="icon-alarm-ringing"></i> Notifications</a></li>
-                                        <li><a href="#"><i class="icon-papers"></i> Invoices</a></li>
-                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
-                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
-                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-                                        <li><a href="#"><i class="icon-power-switch"></i>Logout</a></li>
-                                    </ul>
-                                </div>
+                                
                             </aside>
                         </div>
                     </div>
@@ -370,22 +307,6 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
     
 
                    
-
-
-
-
-<?php 
-// if(isset($_GET['confirm']) AND $_GET['confirm'] == 1){
-
-//     echo ' <h3><span class="badge bg-primary">New product added</span></h3>';
-
-// }
-
-// if(isset($_GET['confirm_delete']) AND $_GET['confirm_delete'] == 1){
-
-//     echo ' <h3><span class="badge bg-primary">Category has been deleted</span></h3>';
-
-// }
 
 
 

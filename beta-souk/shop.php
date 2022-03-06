@@ -67,12 +67,7 @@ echo ' <h3><span class="badge bg-primary">Product has been deleted</span></h3>';
 
                                 <?php echo pagination($statement,$per_page,$page,$url=GEN_WEBSITE.'/shop.php?'); ?>
 
-                                    <!-- <ul class="pagination">
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>
-                                    </ul> -->
+                                  
                                 </div>
                             </div>
                          

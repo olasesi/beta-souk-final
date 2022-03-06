@@ -111,3 +111,8 @@ function genReference($qtd){
 
 
 ?>
+
+
+<?php 
+define('API', 'Bearer sk_test_*********************************');
+?>

@@ -1,7 +1,7 @@
 <?php 
 require_once ('../incs-template1/config.php'); 
 include_once ('../incs-template1/cookie-session.php'); 
-
+include ('../incs-template1/settings.php'); 
 
 if(!isset($_SESSION['user_id'])){
 	header("Location:./");
@@ -144,15 +144,6 @@ $most_popular = 0 ;
         $_SESSION['images']['new_name'] = $new_name;
         $_SESSION['images']['file_name'] = $_FILES['product_image']['name'];
         
- 
-
-// mysqli_query($connect, "UPDATE slider_banner SET slider_banner_image='".$new_name."' WHERE slider_banner_name = '".$slider_banner."'") or die(db_conn_error);
-//         if (mysqli_affected_rows($connect) == 1) {
-        
-      
-       
-        
-//}
 
 } else {
         trigger_error('The file could not be moved.');
@@ -179,15 +170,6 @@ VALUES ('".$products_name."','".$products_price."','".$products_sales_price."','
 }
 
 
-        // $query_products = mysqli_query($connect,"INSERT INTO products (products_categories_name) 
-        // VALUES ('".$products_categories."')") or die(db_conn_error);
-
-        //       if(mysqli_affected_rows($connect) == 1){
-             
-        //         header('Location:'.GEN_WEBSITE.'/products-categories.php?confirm=1');
-        //         exit();
-        //     }
-       
              
            
  } 
@@ -239,20 +221,10 @@ VALUES ('".$products_name."','".$products_price."','".$products_sales_price."','
                                 <div class="ps-widget__header"><img src="img/users/3.jpg" alt="" />
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p><a href="#">username@gmail.com</a></p>
+                                        <p><a><?=$EMAIL;?></a></p>
                                     </figure>
                                 </div>
-                                <div class="ps-widget__content">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="icon-user"></i> Account Information</a></li>
-                                        <li><a href="#"><i class="icon-alarm-ringing"></i> Notifications</a></li>
-                                        <li><a href="#"><i class="icon-papers"></i> Invoices</a></li>
-                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
-                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
-                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-                                        <li><a href="#"><i class="icon-power-switch"></i>Logout</a></li>
-                                    </ul>
-                                </div>
+                              
                             </aside>
                         </div>
                     </div>

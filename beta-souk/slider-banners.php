@@ -125,20 +125,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
                                 <div class="ps-widget__header"><img src="img/users/3.jpg" alt="" />
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p><a href="#">username@gmail.com</a></p>
+                                        <p><?=$EMAIL;?></p>
                                     </figure>
                                 </div>
-                                <div class="ps-widget__content">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="icon-user"></i> Account Information</a></li>
-                                        <li><a href="#"><i class="icon-alarm-ringing"></i> Notifications</a></li>
-                                        <li><a href="#"><i class="icon-papers"></i> Invoices</a></li>
-                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
-                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
-                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-                                        <li><a href="#"><i class="icon-power-switch"></i>Logout</a></li>
-                                    </ul>
-                                </div>
+                               
                             </aside>
                         </div>
                     </div>
@@ -149,29 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
                                     <h3> Slider Banners</h3>
                                 </div>
                                 <div class="ps-form__content">
-                                    <!-- <div class="form-group">
-                                        <label>Name</label>
-                                        <input class="form-control" type="text" placeholder="Please enter your name...">
-                                    </div> -->
+                                  
                                     <div class="row">
-                                        <!-- <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input class="form-control" type="text" placeholder="Please enter phone number...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your email...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Birthday</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your birthday...">
-                                            </div>
-                                        </div> -->
+                                      
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Slider banner number</label>
@@ -241,28 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
                 </div>
             </div>
         </section>
-        <!-- <div class="ps-newsletter">
-            <div class="ps-container">
-                <form class="ps-form--newsletter" action="do_action" method="post">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__left">
-                                <h3>Newsletter</h3>
-                                <p>Subcribe to get information about products and coupons</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__right">
-                                <div class="form-group--nest">
-                                    <input class="form-control" type="email" placeholder="Email address">
-                                    <button class="ps-btn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> -->
+       
     </main>
 
 

@@ -1,13 +1,6 @@
 <?php require_once ('../incs-template1/config.php'); ?>
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
-
- <?php 
-//  if(!isset($_POST['buy_button'])){
-// 	header('Location:'.GEN_WEBSITE);
-// 	exit();
-   
-// } 
-?>
+<?php include ('../incs-template1/settings.php'); ?>
 
 <?php
 if (!isset($errors)){$errors = array();}
@@ -16,14 +9,14 @@ if (!isset($errors)){$errors = array();}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['checkout'])){
 	 
-    if (preg_match ('/^[a-zA-Z]{3,30}$/i', trim($_POST['firstname']))) {		//only 30 characters are allowed to be inputted
+    if (preg_match ('/^[a-zA-Z]{3,20}$/i', trim($_POST['firstname']))) {		//only 20 characters are allowed to be inputted
 		$firstname = mysqli_real_escape_string ($connect, trim($_POST['firstname']));
 	} else {
 		$errors['firstname'] = 'Please enter firstname.';
 	} 
 	 
  
-    if (preg_match ('/^[a-zA-Z]{3,30}$/i', trim($_POST['surname']))) {		//only 30 characters are allowed to be inputted
+    if (preg_match ('/^[a-zA-Z]{3,20}$/i', trim($_POST['surname']))) {		//only 20 characters are allowed to be inputted
 		$surname = mysqli_real_escape_string ($connect, trim($_POST['surname']));
 	} else {
 		$errors['surname'] = 'Please enter surname.';
@@ -59,7 +52,7 @@ if(preg_match('/^(0)[0-9]{10}$/i',$_POST['phone'])){
 
 	if (empty($errors)){
       $ref = genReference(10);
-    $q = mysqli_query($connect,"INSERT INTO orders (orders_firstname, orders_surname, orders_email, orders_phone, 	orders_address, orders_city, orders_name, orders_price, orders_reference) 
+    $q = mysqli_query($connect,"INSERT INTO orders (orders_firstname, orders_surname, orders_email, orders_phone, orders_address, orders_city, orders_name, orders_price, orders_reference) 
     VALUES ('".$firstname."','".$surname."', '".$email."', '".$phone."', '".$address."','".$city."', '".$_POST['price']."', '".$_POST['product_name']."', '".$ref."')") or die(db_conn_error);
 
 if(mysqli_affected_rows($connect) == 1){
@@ -84,7 +77,7 @@ if(mysqli_affected_rows($connect) == 1){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
     $headers = [
-        'Authorization: Bearer sk_test_*********************************',
+        'Authorization: '.API,
         'Content-Type: application/json',
     
     ];
@@ -190,10 +183,7 @@ if(mysqli_affected_rows($connect) == 1){
                                             <?php if (array_key_exists('address', $errors)) {
 				echo '<p class="text-danger">'.$errors['address'].'</p>';}?>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label>Apartment</label>
-                                            <input class="form-control" type="text" placeholder="">
-                                        </div> -->
+                                       
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
@@ -205,19 +195,9 @@ if(mysqli_affected_rows($connect) == 1){
                                             </div>
 
                                             
-                                            <!-- <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Postal Code</label>
-                                                    <input class="form-control" type="text" placeholder="">
-                                                </div>
-                                            </div> -->
+                                         
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <div class="ps-checkbox">
-                                                <input class="form-control" type="checkbox" id="save-next-time" placeholder="">
-                                                <label for="save-next-time">Keep me up to date on news and exclusive offers?</label>
-                                            </div>
-                                        </div> -->
+                                      
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
@@ -229,7 +209,7 @@ if(mysqli_affected_rows($connect) == 1){
                                             <figure class="ps-block__items"><a href="#"><strong><?php echo $_POST['product_name']; ?></strong>
                                            <small><?php echo $_POST['price'];?></small></a>
                                             
-                                            <!-- <a href="#"><strong>Herschel Leather Duffle Bag In Brown Color</strong><span>x1</span><small>$ 125.30</small></a> -->
+                                           
                                             </figure>
                                             <figure>
                                                 <figcaption><strong>Subtotal</strong><strong><?php echo $_POST['price'];?></strong></figcaption>
@@ -237,10 +217,7 @@ if(mysqli_affected_rows($connect) == 1){
                                                         <input type="hidden" name/>
                                             
                                             <button class="ps-btn" type="submit" name="checkout"> Checkout</button>
-                                            <!-- <figure class="ps-block__shipping">
-                                                <h3>Shipping</h3>
-                                                <p>Calculated at next step</p>
-                                            </figure> -->
+                                           
                                         </div>
                                     </div>
                                 </div>

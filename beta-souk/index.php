@@ -127,17 +127,7 @@ if(isset($_SESSION['user_id'])){
 while($rows_loop = mysqli_fetch_array($select_products3)){
 
     echo '
-
-
-
-
-
-
-
-
-
-
-                    <div class="ps-product ps-product--inner">
+    <div class="ps-product ps-product--inner">
 
 
                     <div class="ps-product__thumbnail">
@@ -205,44 +195,12 @@ echo '
 
             </div>
 
-                  ';}?>  
+                  ';}
+                  
+                  ?>  
                     
                     
-                    <!-- <div class="ps-product ps-product--inner">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/1.jpg" alt=""></a>
-                            <div class="ps-product__badge">-16%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container">
-                            <p class="ps-product__price sale">$567.99 <del>$670.00 </del><small>18% off</small></p>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <div class="ps-product__progress-bar ps-progress" data-value="82">
-                                    <div class="ps-progress__value"><span></span></div>
-                                    <p>Sold:39</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                   
-                   
-                   
-                   
+                
                   
                   
                 </div>
@@ -346,7 +304,7 @@ echo '
     </div> -->
 
                         <?php 
-                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 1") or die(db_conn_error);
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 0,1") or die(db_conn_error);
 
                         ?>    
     <div class="ps-product-list ps-clothings">
@@ -356,63 +314,89 @@ echo '
                                             while($while_query_page_section=mysqli_fetch_array($query_page_section)){
                                 echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
 
-                                $pro_cat_name =$while_query_page_section['products_categories_name'];
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
                                 }?>
-                <ul class="ps-section__links">
-                   
-                
-                <li><a href="products-categories.php?categories=<?php $while_query_page_section['products_categories_name'];?>&arrivals=1">New Arrivals</a></li>
-                    <li><a href="products-categories.php?categories=<?php $while_query_page_section['products_categories_name'];?>&sellers=1">Best seller</a></li>
-                    <li><a href="products-categories.php?categories=<?php $while_query_page_section['products_categories_name'];?>&popular=1">Must Popular</a></li>
-                    <li><a href="products-categories.php?categories=<?php $while_query_page_section['products_categories_name'];?>&all=1">View All</a></li>
-                </ul>
+               
             </div>
             <div class="ps-section__content">
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
                     data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                    
+                   
                                                          <?php 
-                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT products_id, products_name, products_price, products_image FROM products WHERE products_sub_categories = '".$pro_cat_name."' ORDER BY products_id ASC LIMIT 15") or die(db_conn_error);
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
 
-                                    while($while_sel_pro=mysqli_fetch_array($query_sel_pro_sec)){
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
 
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
                                     echo '
-                                        <div class="ps-product">
-                                        <div class="ps-product__thumbnail">
-                                            <a href="product-description.php?id='.$while_sel_pro['products_id'].'"><img src="images/products/'.$while_sel_pro['products_image'].'" alt="'.$while_sel_pro['products_name'].'" /></a>
-                                        
-                                           
-                                        </div>
-                                        <div class="ps-product__container">
-                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$while_sel_pro['products_id'].'">'.$while_sel_pro['products_name'].'</a>
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
                                                 <div class="ps-product__rating">
                                                     <select class="ps-rating" data-read-only="true">
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="2">5</option>
-                                                        </select>
-                                                       
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
                                                 </div>
-                                                <p class="ps-product__price sale">'.$while_sel_pro['products_price'].'</p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$while_sel_pro['products_id'].'">'.$while_sel_pro['products_name'].'</a>
-                                                <p class="ps-product__price sale">
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
                                                 
-                                                '.$while_sel_pro['products_price'].
+                                                echo '</p>
                                                 
-                                                ' 
-                                                    
-                                               
-                                            </p>
                                             </div>
-                                        </div>
-
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
                                     
-                                    </div>';
-
-
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
 
 
 
@@ -422,261 +406,6 @@ echo '
                     
                    
 
-                    <!-- <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/2.jpg" alt="" /></a>
-                            <div class="ps-product__badge hot">hot</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$101.99</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                <p class="ps-product__price">$101.99</p>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/3.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-25%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/4.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gear VR Virtual Reality Headset</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$320.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gear VR Virtual Reality Headset</a>
-                                <p class="ps-product__price">$320.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/5.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung UHD TV 24inch</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$85.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung UHD TV 24inch</a>
-                                <p class="ps-product__price">$85.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/6.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Store</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$92.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                <p class="ps-product__price">$92.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/7.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-46%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">LG White Front Load Steam Washer</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">LG White Front Load Steam Washer</a>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/8.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Go Pro</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Edifier Powered Bookshelf Speakers</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Edifier Powered Bookshelf Speakers</a>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/9.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Go Pro</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Amcrest Security Camera in White Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Amcrest Security Camera in White Color</a>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/electronic/10.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Go Pro</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Amcrest Security Camera in White Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Amcrest Security Camera in White Color</a>
-                                <p class="ps-product__price">$42.00</p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
@@ -688,264 +417,728 @@ echo '
         </div>
     </div>
     
-   <!-- <div class="ps-product-list ps-garden-kitchen">
+
+
+
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 1, 1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
         <div class="ps-container">
             <div class="ps-section__header">
-                <h3>Home, Garden & Kitchen</h3>
-                <ul class="ps-section__links">
-                    <li><a href="shop-grid.html">New Arrivals</a></li>
-                    <li><a href="shop-grid.html">Best seller</a></li>
-                    <li><a href="shop-grid.html">Must Popular</a></li>
-                    <li><a href="shop-grid.html">View All</a></li>
-                </ul>
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
             </div>
             <div class="ps-section__content">
-                <div class="ps-carousel--responsive owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
-                    data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/1.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-16%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price sale">$567.99 <del>$670.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
-                                <p class="ps-product__price sale">$567.99 <del>$670.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/2.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Aroma Rice Cooker</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$101.99</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Aroma Rice Cooker</a>
-                                <p class="ps-product__price">$101.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/3.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-25%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Simple Plastice Chair In White Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Simple Plastice Chair In White Color</a>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/4.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Fabric Chair In Brown Colorr</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$320.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Korea Fabric Chair In Brown Colorr</a>
-                                <p class="ps-product__price">$320.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/5.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Set 14-Piece Knife From KichiKit</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$85.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Set 14-Piece Knife From KichiKit</a>
-                                <p class="ps-product__price">$85.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/6.jpg" alt="" /></a>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Store</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Magic Bullet NutriBullet Pro 900 Series Blender</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$92.00</p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Magic Bullet NutriBullet Pro 900 Series Blender</a>
-                                <p class="ps-product__price">$92.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/7.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-46%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <a href="product-default.html"><img src="img/products/home/7.jpg" alt="" /></a>
-                            <div class="ps-product__badge">-46%</div>
-                            <ul class="ps-product__actions">
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
-                                <p class="ps-product__price sale">$42.00 <del>$60.00 </del></p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
                 </div>
             </div>
+
+
+
+
+
+
         </div>
-    </div>-->
+    </div>
+    
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 2,1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+            <div class="ps-section__header">
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 3, 1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+            <div class="ps-section__header">
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 4, 1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+            <div class="ps-section__header">
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 5, 1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+            <div class="ps-section__header">
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    
+
+
+    <?php 
+                        $query_page_section =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories ORDER BY products_categories_id ASC LIMIT 6, 1") or die(db_conn_error);
+
+                        ?>    
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+            <div class="ps-section__header">
+                                                <?php
+                                            while($while_query_page_section=mysqli_fetch_array($query_page_section)){
+                                echo '<h3>'.$while_query_page_section['products_categories_name']. '</h3>';
+
+                                $pro_cat_name =$while_query_page_section['products_categories_id'];
+                                }?>
+               
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4"
+                    data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                   
+                                                         <?php 
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_sub_categories = '". $pro_cat_name."' ORDER BY products_id ASC LIMIT 12") or die(db_conn_error);
+
+                                    while($rows_loop=mysqli_fetch_array($query_sel_pro_sec)){
+
+                                        echo '
+                                        <div class="ps-product ps-product--inner">
+                                    
+                                    
+                                                        <div class="ps-product__thumbnail">
+                                            <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+                                            if(!empty($rows_loop['products_sales_price'])){
+                                                $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
+                                                echo '
+                                                <div class="ps-product__badge">-'.$dis.'%</div>
+                                                ';
+                                            }
+                                    echo    '
+                                    <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    
+                                    </ul>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                        <div class="ps-product__container">';
+                                        if(isset($_SESSION['user_id'])){
+                                           echo '<div class="text-center my-1">
+                                    
+                                                <a href="edit-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-success btn-lg">Edit</button></a>
+                                                <a href="delete-products.php?id='.$rows_loop['products_id'].'"><button type="button" class="btn btn-danger btn-lg">Delete</button></a>
+                                            </div>';}
+                                    
+                                    
+                                         
+                                    
+                                    echo '
+                                            <div class="ps-product__content"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                <div class="ps-product__rating">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        <option value="1">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="1">3</option>
+                                                        <option value="1">4</option>
+                                                        <option value="2">5</option>
+                                                    </select><span>01</span>
+                                                </div>
+                                                <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                    echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                } 
+                                                
+                                                echo '</p>
+                                                
+                                            </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-description.php?id='.$rows_loop['products_id'].'">'.$rows_loop['products_name'].'</a>
+                                                    <p class="ps-product__price sale">'; if(!empty($rows_loop['products_sales_price'])){
+                                                        echo '&#8358;'.number_format($rows_loop['products_sales_price']).' ' . '<del>'.'&#8358;'.number_format($rows_loop['products_price']) .'</del>';
+                                                    } 
+                                                echo ' </p>
+                                                        
+                                                </div>
+                                                
+                                                </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                
+                                    
+                                                </div>
+                                    
+                                                      ';
+
+
+
+                                    } 
+                                    ?> 
+ 
+                    
+                   
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
     <div class="ps-home-ads">
         <div class="ps-container">
             <div class="row">
 
-
-
-
-                                            <?php
-                                // if(isset($_SESSION['user_id'])){
-                                //    echo  '<small>banner 6(1090x245)px, banner 7(530x245)px</small>';
-                                // }
-                                ?>
 
 
                                     <?php
@@ -979,201 +1172,8 @@ echo '
             </div>
         </div>
     </div>
-    <!-- <div class="ps-download-app">
-        <div class="ps-container">
-            <div class="ps-block--download-app">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-block__thumbnail"><img src="img/app.png" alt=""></div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-block__content">
-                                <h3>Download Martfury App Now!</h3>
-                                <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
-                                <form class="ps-form--download-app" action="do_action" method="post">
-                                    <div class="form-group--nest">
-                                        <input class="form-control" type="Email" placeholder="Email Address">
-                                        <button class="ps-btn">Subscribe</button>
-                                    </div>
-                                </form>
-                                <p class="download-link">
-                                    <a href="#"><img src="img/google-play.png" alt=""></a>
-                                    <a href="#"><img src="img/app-store.png" alt=""></a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="ps-product-list ps-new-arrivals">
-        <div class="ps-container">
-            <div class="ps-section__header">
-                <h3>Hot New Arrivals</h3>
-                <ul class="ps-section__links">
-                    <li><a href="shop-grid.html">Technologies</a></li>
-                    <li><a href="shop-grid.html">Electronic</a></li>
-                    <li><a href="shop-grid.html">Furnitures</a></li>
-                    <li><a href="shop-grid.html">Clothing & Apparel</a></li>
-                    <li><a href="shop-grid.html">Health & Beauty</a></li>
-                    <li><a href="shop-grid.html">View All</a></li>
-                </ul>
-            </div>
-            <div class="ps-section__content">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/1.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple iPhone Retina 6s Plus 32GB</a>
-                                <p class="ps-product__price">$990.50</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/1.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple iPhone Retina 6s Plus 64GB</a>
-                                <p class="ps-product__price">$1120.50</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/1.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple iPhone Retina 6s Plus 128GB</a>
-                                <p class="ps-product__price">$1220.50</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/2.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price">$36.78 – $56.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/3.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Herschel Leather Duffle Bag In Brown Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price">$125.30</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/4.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price">$55.30</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/5.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                </div>
-                                <p class="ps-product__price sale">$41.27 <del>$52.99 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                        <div class="ps-product--horizontal">
-                            <div class="ps-product__thumbnail">
-                                <a href="product-default.html"><img src="img/products/arrivals/6.jpg" alt="" /></a>
-                            </div>
-                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                <div class="ps-product__rating">
-                                    <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                </div>
-                                <p class="ps-product__price sale">$41.27 <del>$62.39 </del></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="ps-newsletter">
-        <div class="ps-container">
-            <form class="ps-form--newsletter" action="do_action" method="post">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__left">
-                            <h3>Newsletter</h3>
-                            <p>Subcribe to get information about products and coupons</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__right">
-                            <div class="form-group--nest">
-                                <input class="form-control" type="email" placeholder="Email address">
-                                <button class="ps-btn">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
+   
+   
 
 
    
