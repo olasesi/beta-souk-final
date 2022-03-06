@@ -11,22 +11,13 @@
                 <h4 class="widget-title">Company</h4>
                 <ul class="ps-list--link">
                     <li><a href="./">Home</a></li>
-                    <li><a href="./about-us.php">About Us</a></li>
+                   
                     <li><a href="./shop.php">Shop</a></li>
-                    <li><a href="./contact-us.php">Contact us</a></li>
+                   
                 </ul>
             </aside>
      
-            <aside class="widget widget_footer">
-                <h4 class="widget-title">Quick links</h4>
-                <ul class="ps-list--link">
-                    <li><a href="policy.html">Policy</a></li>
-                    <li><a href="term-condition.html">Term & Condition</a></li>
-                    <li><a href="shipping.html">Shipping</a></li>
-                    <li><a href="return.html">Return</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
-                </ul>
-            </aside>
+          
 
                
         <aside class="widget widget_footer widget_contact-us">
@@ -52,30 +43,16 @@
            
           
         </div>
-        <!-- <div class="ps-footer__links">
-            <p><strong>Consumer Electric:</strong><a href="#">Air Conditioners</a><a href="#">Audios &amp; Theaters</a><a href="#">Car Electronics</a><a href="#">Office Electronics</a><a href="#">TV Televisions</a><a href="#">Washing Machines</a>
-            </p>
-            <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED TVs</a>
-            </p>
-            <p><strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
-            </p>
-            <p><strong>Health &amp; Beauty:</strong><a href="#">Hair Care</a><a href="#">Decoration</a><a href="#">Hair Care</a><a href="#">Makeup</a><a href="#">Body Shower</a><a href="#">Skin Care</a><a href="#">Cologine</a><a href="#">Perfume</a>
-            </p>
-            <p><strong>Jewelry &amp; Watches:</strong><a href="#">Necklace</a><a href="#">Pendant</a><a href="#">Diamond Ring</a><a href="#">Sliver Earing</a><a href="#">Leather Watcher</a><a href="#">Gucci</a>
-            </p>
-            <p><strong>Computer &amp; Technologies:</strong><a href="#">Desktop PC</a><a href="#">Laptop</a><a href="#">Smartphones</a><a href="#">Tablet</a><a href="#">Game Controller</a><a href="#">Audio &amp; Video</a><a href="#">Wireless Speaker</a>
-                <a href="#">Done</a>
-            </p>
-        </div> -->
+       
         <div class="ps-footer__copyright">
             <p>&copy; <script>var footer_date=new Date(); document.write(footer_date.getFullYear())</script> Duromedia. All Rights Reserved</p>
-            <p><span>We Using Safe Payment For:</span>
+            <!-- <p><span>We Using Safe Payment For Payment:</span>
                 <a href="#"><img src="img/payment-method/1.jpg" alt="" /></a>
                 <a href="#"><img src="img/payment-method/2.jpg" alt="" /></a>
                 <a href="#"><img src="img/payment-method/3.jpg" alt="" /></a>
                 <a href="#"><img src="img/payment-method/4.jpg" alt="" /></a>
                 <a href="#"><img src="img/payment-method/5.jpg" alt="" /></a>
-            </p>
+            </p> -->
         </div>
     </div>
 </footer>

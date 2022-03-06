@@ -1,6 +1,5 @@
 <?php
-//<a href="promotional-gif.php"><button type="button" class="btn btn-danger btn-lg">Promotional GIF banners</button></a>
-//<a href="products-subcategories.php"><button type="button" class="btn btn-dark btn-lg">Products subcategories</button></a>
+
 if(isset($_SESSION['user_id'])){
    echo 
    '<div class="ps-breadcrumb">
