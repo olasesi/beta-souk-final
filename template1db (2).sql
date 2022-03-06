@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2022 at 07:42 PM
+-- Generation Time: Mar 06, 2022 at 08:03 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -86,16 +86,6 @@ CREATE TABLE `products` (
   `products_image` varchar(255) NOT NULL DEFAULT 'default.jpg',
   `products_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`products_id`, `products_name`, `products_price`, `products_sales_price`, `products_sub_categories`, `products_promo`, `products_deals`, `products_new_arrivals`, `products_best_sellers`, `products_popular`, `products_short_description`, `products_long_description`, `products_image`, `products_timestamp`) VALUES
-(1, 'Venza', '5000000', '', 1, '0', 'Deals of the day', 'New arrivals', 'Best bellers', '0', 'Unrestrained and portable active stereo speaker Free from the confines of wires and chords 20 hours of portable capabilities Double-ended Coil Cord with 3.5mm Stereo Plugs Included 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X', 'Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.  Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.', '1287eab20011558404a13a549b8fc776abd0892e.png', '2022-03-06 10:41:40'),
-(2, 'Shirt', '5000', '', 1, '0', 'Deals of the day', 'New arrivals', 'Best bellers', '0', '', '', 'd734a38bd855e4e60458e49de23090d9a2781e89.jpg', '2022-03-06 10:40:46'),
-(6, 'socks', '500', '450', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'c7c289dbe7434540ff8958f64d9dcd871314f985.jpg', '2022-03-06 10:40:53'),
-(7, 'gown', '6000', '4000', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'b608120fe8771660ad2ffc62d120258ac057939f.jpg', '2022-03-06 10:41:35');
 
 -- --------------------------------------------------------
 
@@ -214,7 +204,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products_categories`

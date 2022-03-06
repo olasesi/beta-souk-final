@@ -133,15 +133,11 @@
                         <li class=""><a href="<?=GEN_WEBSITE;?>">Home</a><span class="sub-toggle"></span>
                             
                         </li>
-                        <li class=""><a href="<?=GEN_WEBSITE.'/about-us.php';?>">About Us</a><span class="sub-toggle"></span>
-                          
-                        </li>
+                       
                         <li class=""><a href="<?=GEN_WEBSITE.'/shop.php';?>">Shop</a><span class="sub-toggle"></span>
                            
                         </li>
-                        <li class=""><a href="<?=GEN_WEBSITE.'/contact-us.php';?>">Contact Us</a><span class="sub-toggle"></span>
-                            
-                        </li>
+                       
                     </ul>
                   
                 </div>
