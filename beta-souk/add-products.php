@@ -8,15 +8,7 @@ if(!isset($_SESSION['user_id'])){
 	exit();
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['delete_categories'])){
 
-    //Delete query should also make provition for the products in that category and its sub cat
-    //
-    header('Location:'.GEN_WEBSITE.'/products-categories.php?confirm_delete=1');
-    exit();
-   
-
-}
 
 
 $errors = array();
@@ -520,42 +512,7 @@ if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1){
                                 </div>
                             </form>
                         </div>
-
-<?php
-     $select_products_cat = mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories") or die(db_conn_error);
-
-     if(mysqli_num_rows($select_products_cat) > 0){
-
-echo '<div class="ps-form__header">
-<h3> Modify products categories</h3>
-</div>';
-
-while($row_categories = mysqli_fetch_array($select_products_cat)){
-
-echo '<div class="dropdown">
-<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-'.$row_categories['products_categories_name'].'
-</button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<form method="POST" action="modify-products-categories.php">  
-
-<button type="submit" class="dropdown-item" name="modify_categories" value="'.$row_categories['products_categories_id'].'">Modify categories</button>
-</form>
-
-<form method="POST" action="">  
-
-
-<button type="submit" class="dropdown-item" name="delete_categories" value="'.$row_categories['products_categories_id'].'">Delete</button>
-
-</form>
- 
-</div>
-</div>';
-     }
-     }
-
-?>
-                   
+              
 
                         
                     

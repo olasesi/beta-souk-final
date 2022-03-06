@@ -50,6 +50,13 @@ $statement = "products ORDER BY products_id DESC";
                             <div class="ps-tab active" id="tab-1">
                                 <div class="ps-shopping-product">
                                     <div class="row">
+
+                                    <?php
+if(isset($_GET['confirm_delete']) AND $_GET['confirm_delete'] == 1 ){
+echo ' <h3><span class="badge bg-primary">Product has been deleted</span></h3>';
+}
+?>
+
                                         <?php 
                 include ('../incs-template1/products.php');
 ?>

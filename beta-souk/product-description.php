@@ -1,11 +1,33 @@
 <?php require_once ('../incs-template1/config.php'); ?>
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
+<?php
+if(!isset($_GET['id'])){
+    header("Location:./");
+	exit();
+}
+?>
+<?php
+$query_page_section =  mysqli_query($connect, "SELECT products_id FROM products WHERE products_id = '".mysqli_real_escape_string ($connect, $_GET['id'])."'") or die(db_conn_error);
+if(mysqli_num_rows($query_page_section) != 1){
+    header("Location:./");
+	exit();  
+}
+
+?>
+
+
 <?php include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
 
 
 <div class="ps-page--product">
         <div class="ps-container">
+        <?php
+if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1 AND isset($_GET['confirm_modify'])){
+echo ' <h3><span class="badge bg-primary">Product has been modified</span></h3>';
+}
+?>
+
             <div class="ps-page__container">
                 <div class="ps-page__left">
                     <div class="ps-product--detail ps-product--fullwidth">
@@ -15,7 +37,7 @@
                                     <div class="ps-wrapper">
 
                                     <?php 
-                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products WHERE products_id = '".$_GET['id']."'") or die(db_conn_error);
+                                    $query_sel_pro_sec =  mysqli_query($connect, "SELECT * FROM products, products_categories WHERE products_categories_id = products_sub_categories AND products_id = '".mysqli_real_escape_string ($connect, $_GET['id'])."'") or die(db_conn_error);
 
 while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
 
@@ -37,7 +59,7 @@ while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
                             <div class="ps-product__info">
                                 <h1><?php echo $row_single['products_name']; ?></h1>
                                 <div class="ps-product__meta">
-                                    <!-- <p>Brand:<a href="shop-default.html">Sony</a></p>
+                                    
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -45,10 +67,11 @@ while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
                                             <option value="1">3</option>
                                             <option value="1">4</option>
                                             <option value="2">5</option>
-                                        </select><span>(1 review)</span>
-                                    </div> -->
+                                        </select>
+                                       
+                                    </div> 
                                 </div>
-                                <h4 class="ps-product__price"><?php echo $row_single['products_price']; ?></h4>
+                                <h4 class="ps-product__price"><?php if(!empty($row_single['products_price'])){echo '&#8358;'.number_format($row_single['products_price']);}  ?></h4>
                                 <div class="ps-product__desc">
                                     <!-- <p>Sold By:<a href="shop-default.html"><strong> Go Pro</strong></a></p> -->
                                     <ul class="ps-list--dot">
@@ -87,7 +110,7 @@ while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
                                 <div class="ps-product__specification">
                                     <!-- <a class="report" href="#">Report Abuse</a> -->
                                     <!-- <p><strong>SKU:</strong> SF1133569600-1</p> -->
-                                    <p class="categories"><strong> Categories:</strong><a><?php echo $row_single['products_sub_categories']; ?></a></p>
+                                    <p class="categories"><strong> Categories:</strong><a><?php echo $row_single['products_categories_name']; ?></a></p>
                                    
                                 </div>
                                  <div class="fb-share-button" data-href="https://<?=$website_name;?>/product-description.php?id=<?=$_GET['id'];?>" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F<?=$website_name;?>%2Fproduct-description.php%3Fid%3D<?=$_GET['id'];?>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"> Share</i></a></div>
