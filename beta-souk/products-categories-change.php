@@ -79,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li>User Information</li>
+                    <li><a href="/">Home</a></li>
+                  
                 </ul>
             </div>
         </div>
@@ -150,50 +150,7 @@ if(isset($confirm) AND $confirm == 1){
                     ?>
                                     </div> 
                                     <div class="row">
-                                        <!-- <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input class="form-control" type="text" placeholder="Please enter phone number...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your email...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Birthday</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your birthday...">
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Slider banner number</label>
-                                               
-                                               
-                                              
-
-                                                <select class="form-control" name="products-categories">
-                                                
-                                                    
-                                             
-                                                
-                                                
-                                                
-                                              
-                                                </select>
-                                               
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Upload</label>
-                                                <input class="form-control" type="file" placeholder="Upload slider" name="slider_banner">
-                                               
-                                            </div>
-                                        </div> -->
+                                       
                                     </div>
                                 </div>
                                 <div class="form-group submit">
@@ -202,12 +159,7 @@ if(isset($confirm) AND $confirm == 1){
                             </form>
                         </div>
 
-<?php
-//to return to product cat
-?>                
-
-                        
-                    
+            
                       
                        
                     
@@ -216,28 +168,7 @@ if(isset($confirm) AND $confirm == 1){
                 </div>
             </div>
         </section>
-        <!-- <div class="ps-newsletter">
-            <div class="ps-container">
-                <form class="ps-form--newsletter" action="do_action" method="post">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__left">
-                                <h3>Newsletter</h3>
-                                <p>Subcribe to get information about products and coupons</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__right">
-                                <div class="form-group--nest">
-                                    <input class="form-control" type="email" placeholder="Email address">
-                                    <button class="ps-btn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> -->
+      
     </main>
 
 

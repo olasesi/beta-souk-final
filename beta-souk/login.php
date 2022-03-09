@@ -65,7 +65,7 @@ if(empty($login_array)){
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="<?='./';?>">Home</a></li>
-                <li>Login</li>
+                
             </ul>
         </div>
     </div>

@@ -10,9 +10,9 @@
             <aside class="widget widget_footer">
                 <h4 class="widget-title">Company</h4>
                 <ul class="ps-list--link">
-                    <li><a href="./">Home</a></li>
+                    <li><a href="/">Home</a></li>
                    
-                    <li><a href="./shop.php">Shop</a></li>
+                    <li><a href="shop.php">Shop</a></li>
                    
                 </ul>
             </aside>
@@ -126,10 +126,10 @@
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
     <div class="ps-panel__header">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+        <form class="ps-form--search-mobile" action="search.php" method="GET">
             <div class="form-group--nest">
-                <input class="form-control" type="text" placeholder="Search something...">
-                <button><i class="icon-magnifier"></i></button>
+                <input class="form-control" type="text" placeholder="Search something..." name="search" value="<?php if(isset($_GET['search'])){echo $_GET['search'];} ?>">
+                <button type="submit"><i class="icon-magnifier"></i></button>
             </div>
         </form>
     </div>
@@ -141,10 +141,9 @@
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li class="menu-item-has-children"><a href="index">Home</a></span></li>
-            <li class="menu-item-has-children"><a href="shop-default">Shop</a></li>
-            <li class="menu-item-has-children"><a href="">Pages</a></li>
-            <li class="menu-item-has-children has-mega-menu"><a href="">Blogs</a></li>
+            <li class="menu-item-has-children"><a href="/">Home</a></span></li>
+            <li class="menu-item-has-children"><a href="shop.php">Shop</a></li>
+           
         </ul>
     </div>
 </div>

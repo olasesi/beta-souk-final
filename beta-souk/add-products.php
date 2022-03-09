@@ -1,7 +1,7 @@
 <?php 
 require_once ('../incs-template1/config.php'); 
 include_once ('../incs-template1/cookie-session.php'); 
-include ('../incs-template1/settings.php'); 
+
 
 if(!isset($_SESSION['user_id'])){
 	header("Location:./");
@@ -185,7 +185,9 @@ VALUES ('".$products_name."','".$products_price."','".$products_sales_price."','
 
 
 
- include ('../incs-template1/header.php'); ?>
+ include ('../incs-template1/header.php'); 
+ include ('../incs-template1/settings.php');
+ ?>
 
 
 
@@ -199,8 +201,8 @@ VALUES ('".$products_name."','".$products_price."','".$products_sales_price."','
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li>User Information</li>
+                    <li><a href="/">Home</a></li>
+                  
                 </ul>
             </div>
         </div>
@@ -349,17 +351,7 @@ if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1){
  
                         }  
                         
-                        /*on error selection, the selected one should still be there. Not done yet*/
-                      /*  if(isset ($_POST['subject'])){
-                        foreach ($class_range as $pri_class=>$class_number){
-                        $sel_class = ($pri_class==$_POST['class'])?'Selected="selected"':'';
-                        echo '<option value="'.$class_number.'" '.$sel_class.'>'.$pri_class.'</option>';}
-                        }else{
-                            foreach ($class_range as $pri_class=>$class_number){
-                              
-                                echo '<option value="'.$class_number.'">'.$pri_class.'</option>';}
-
-                        }*/
+                      
                         ?>            
                       
       
@@ -491,28 +483,7 @@ if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1){
                 </div>
             </div>
         </section>
-        <!-- <div class="ps-newsletter">
-            <div class="ps-container">
-                <form class="ps-form--newsletter" action="do_action" method="post">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__left">
-                                <h3>Newsletter</h3>
-                                <p>Subcribe to get information about products and coupons</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__right">
-                                <div class="form-group--nest">
-                                    <input class="form-control" type="email" placeholder="Email address">
-                                    <button class="ps-btn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> -->
+      
     </main>
 
 

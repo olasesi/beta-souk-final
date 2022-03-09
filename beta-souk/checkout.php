@@ -1,12 +1,20 @@
 <?php require_once ('../incs-template1/config.php'); ?>
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
-<?php include ('../incs-template1/settings.php'); ?>
-
 <?php
+
+
+
+if(isset($_POST['product_name']) AND isset($_POST['price'])){
+   $_SESSION['product_name'] = $_POST['product_name'];
+   $_SESSION['price'] = $_POST['price'];
+   
+}
+if(!isset($_SESSION['product_name']) OR !isset($_SESSION['product_name'])){
+    $_SESSION['product_name'] = 0;
+    $_SESSION['price'] = 0;
+}
+
 if (!isset($errors)){$errors = array();}
-
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['checkout'])){
 	 
     if (preg_match ('/^[a-zA-Z]{3,20}$/i', trim($_POST['firstname']))) {		//only 20 characters are allowed to be inputted
@@ -53,50 +61,15 @@ if(preg_match('/^(0)[0-9]{10}$/i',$_POST['phone'])){
 	if (empty($errors)){
       $ref = genReference(10);
     $q = mysqli_query($connect,"INSERT INTO orders (orders_firstname, orders_surname, orders_email, orders_phone, orders_address, orders_city, orders_name, orders_price, orders_reference) 
-    VALUES ('".$firstname."','".$surname."', '".$email."', '".$phone."', '".$address."','".$city."', '".$_POST['price']."', '".$_POST['product_name']."', '".$ref."')") or die(db_conn_error);
+    VALUES ('".$firstname."','".$surname."', '".$email."', '".$phone."', '".$address."','".$city."', '".$_SESSION['price']."', '".$_SESSION['product_name']."', '".$ref."')") or die(db_conn_error);
 
 if(mysqli_affected_rows($connect) == 1){
 
+    $_SESSION['email_customer'] = $email;
+    $_SESSION['ref'] = $ref; 
 
-    $result = array();
-
-    //Set other parameters as keys in the $postdata array
-    $postdata = [
-        'email' => $email,
-        'amount' => $_POST['price']*100,
-        'reference' => $ref,
-        'callback_url' => GEN_WEBSITE.'/verify-payment.php'
-    ];
-    
-    $url = "https://api.paystack.co/transaction/initialize";
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postdata));  //Post Fields
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $headers = [
-        'Authorization: '.API,
-        'Content-Type: application/json',
-    
-    ];
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    
-    $request = curl_exec($ch);
-    
-    curl_close($ch);
-    
-    if ($request) {
-    
-        $result = json_decode($request, true);
-    
-        header('Location: ' . $result['data']['authorization_url']);
-    
-    }
-
-
-
+    header("Location:pay.php");
+	exit();
 
 
 
@@ -152,13 +125,7 @@ if(mysqli_affected_rows($connect) == 1){
                                             <?php if (array_key_exists('phone', $errors)) {
 				echo '<p class="text-danger">'.$errors['phone'].'</p>';}?>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <div class="ps-checkbox">
-                                                <input class="form-control" type="checkbox" id="keep-update" placeholder="">
-                                                <label for="keep-update">Keep me up to date on news and exclusive offers?</label>
-                                            </div>
-                                        </div> -->
-                                        <!-- <h3 class="ps-form__heading">Shipping Address</h3> -->
+                                       
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
@@ -197,28 +164,21 @@ if(mysqli_affected_rows($connect) == 1){
                                             
                                          
                                         </div>
+
+                                        <div class="ps-block__content">
+                                                                           
+                                                        
+                                            
+                                                                           <button class="ps-btn" type="submit" name="checkout"> Continue</button>
+                                                                          
+                                                                       </div>
+
                                       
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                                     <div class="ps-block--checkout-order">
-                                        <div class="ps-block__content">
-                                            <figure>
-                                                <figcaption><strong>Product/Service</strong><strong>Total</strong></figcaption>
-                                            </figure>
-                                            <figure class="ps-block__items"><a href="#"><strong><?php echo $_POST['product_name']; ?></strong>
-                                           <small><?php echo $_POST['price'];?></small></a>
-                                            
-                                           
-                                            </figure>
-                                            <figure>
-                                                <figcaption><strong>Subtotal</strong><strong><?php echo $_POST['price'];?></strong></figcaption>
-                                            </figure>
-                                                        <input type="hidden" name/>
-                                            
-                                            <button class="ps-btn" type="submit" name="checkout"> Checkout</button>
-                                           
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>

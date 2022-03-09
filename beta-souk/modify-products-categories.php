@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li>User Information</li>
+                    <li><a href="/">Home</a></li>
+                  
                 </ul>
             </div>
         </div>

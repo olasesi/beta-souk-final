@@ -44,13 +44,13 @@ while($row_cat = mysqli_fetch_array($query_page_section)){
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
 	 
-    if (preg_match ('/^[a-zA-Z]{3,20}$/i', trim($_POST['products_name']))) {	
+    if (preg_match ('/^[a-z A-Z]{3,20}$/i', trim($_POST['products_name']))) {	
 		$products_name = mysqli_real_escape_string ($connect, trim($_POST['products_name']));
 	} else {
 		$errors['products_name'] = 'Please enter valid name.';
 	} 
 	 
-    if (preg_match ('/^[0-9]{0,10}$/i', trim($_POST['price'])) OR empty($_POST['price'])) {	
+    if (preg_match ('/^[0-9]{0,10}$/i', trim($_POST['price']))) {	
 		$products_price = mysqli_real_escape_string ($connect, trim($_POST['price']));
 	} else {
 		$errors['price'] = 'Please enter valid price.';
@@ -58,13 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
 
 
   
-if(empty($_POST['price']) AND empty($_POST['sales_price']) ){
+if(!empty($_POST['price']) AND empty($_POST['sales_price'])){
     $products_sales_price = mysqli_real_escape_string ($connect, trim($_POST['sales_price']));
-}elseif(!empty($_POST['price']) AND empty($_POST['sales_price'])){
-    $products_sales_price = mysqli_real_escape_string ($connect, trim($_POST['sales_price']));
-}elseif(empty($_POST['price']) AND !empty($_POST['sales_price'])){
-    $errors['sales_price'] = 'Please enter valid value for price.';  
-    
 }elseif(!empty($_POST['price']) AND !empty($_POST['sales_price'])){
 if(preg_match ('/^[0-9]{0,10}$/i', trim($_POST['price'])) AND preg_match ('/^[0-9]{0,10}$/i', trim($_POST['sales_price']))){
 if($_POST['sales_price'] < $_POST['price']){
@@ -280,7 +275,7 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="/">Home</a></li>
-                    <li>User Information</li>
+                   
                 </ul>
             </div>
         </div>
@@ -331,7 +326,7 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
                                     <div class="row">
                                          <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Price</label>
+                                                <label>Price <span style="color:red;">*</span></label>
                                                 <input class="form-control" type="text" name="price" placeholder="e.g 5500" value="<?php if(isset($_POST['price'])){echo $_POST['price'];}else{echo $products_price;} ?>">
                                                 <?php if (array_key_exists('price', $errors)) {
 	                    echo '<p class="text-danger">'.$errors['price'].'</p>';
