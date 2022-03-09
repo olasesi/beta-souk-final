@@ -46,17 +46,24 @@
        
         <div class="ps-footer__copyright">
             <p>&copy; <script>var footer_date=new Date(); document.write(footer_date.getFullYear())</script> Duromedia. All Rights Reserved</p>
-            <!-- <p><span>We Using Safe Payment For Payment:</span>
-                <a href="#"><img src="img/payment-method/1.jpg" alt="" /></a>
-                <a href="#"><img src="img/payment-method/2.jpg" alt="" /></a>
-                <a href="#"><img src="img/payment-method/3.jpg" alt="" /></a>
-                <a href="#"><img src="img/payment-method/4.jpg" alt="" /></a>
-                <a href="#"><img src="img/payment-method/5.jpg" alt="" /></a>
-            </p> -->
+           
         </div>
     </div>
 </footer>
-<div id="back2top"><i class="icon icon-arrow-up"></i></div>
+ <div id="scrool">
+    <div class="back2top"><i class="icon icon-arrow-up"></i></div>
+    <div class="whatsapp">
+        <?php 
+        if(!empty($WHATSAPP_LINK)) {
+            echo '<a href="'.$WHATSAPP_LINK.'" target="_blank">
+               <i class="fab fa-whatsapp-square    "></i>
+            </a>';
+            
+        }
+        ?>
+    </div>
+
+</div>
 <div class="ps-site-overlay"></div>
 <div class="ps-panel--sidebar" id="cart-mobile">
     <div class="ps-panel__header">
@@ -89,97 +96,26 @@
     <div class="ps-panel__content">
         <div class="menu--product-categories">
             <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
-            <div class="menu__content">
+             <div class="menu__content">
                 <ul class="menu--mobile">
-                    <li><a href="#.html">Hot Promotions</a>
-                    </li>
-                    <li class="menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span class="sub-toggle"></span>
-                        <div class="mega-menu">
-                            <div class="mega-menu__column">
-                                <h4>Electronic<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="#.html">Home Audio &amp; Theathers</a>
-                                    </li>
-                                    <li><a href="#.html">TV &amp; Videos</a>
-                                    </li>
-                                    <li><a href="#.html">Camera, Photos &amp; Videos</a>
-                                    </li>
-                                    <li><a href="#.html">Cellphones &amp; Accessories</a>
-                                    </li>
-                                    <li><a href="#.html">Headphones</a>
-                                    </li>
-                                    <li><a href="#.html">Videosgames</a>
-                                    </li>
-                                    <li><a href="#.html">Wireless Speakers</a>
-                                    </li>
-                                    <li><a href="#.html">Office Electronic</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mega-menu__column">
-                                <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="#.html">Digital Cables</a>
-                                    </li>
-                                    <li><a href="#.html">Audio &amp; Video Cables</a>
-                                    </li>
-                                    <li><a href="#.html">Batteries</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#.html">Clothing &amp; Apparel</a>
-                    </li>
-                    <li><a href="#.html">Home, Garden &amp; Kitchen</a>
-                    </li>
-                    <li><a href="#.html">Health &amp; Beauty</a>
-                    </li>
-                    <li><a href="#.html">Yewelry &amp; Watches</a>
-                    </li>
-                    <li class="menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span class="sub-toggle"></span>
-                        <div class="mega-menu">
-                            <div class="mega-menu__column">
-                                <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="#.html">Computer &amp; Tablets</a>
-                                    </li>
-                                    <li><a href="#.html">Laptop</a>
-                                    </li>
-                                    <li><a href="#.html">Monitors</a>
-                                    </li>
-                                    <li><a href="#.html">Networking</a>
-                                    </li>
-                                    <li><a href="#.html">Drive &amp; Storages</a>
-                                    </li>
-                                    <li><a href="#.html">Computer Components</a>
-                                    </li>
-                                    <li><a href="#.html">Security &amp; Protection</a>
-                                    </li>
-                                    <li><a href="#.html">Gaming Laptop</a>
-                                    </li>
-                                    <li><a href="#.html">Accessories</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#.html">Babies &amp; Moms</a>
-                    </li>
-                    <li><a href="#.html">Sport &amp; Outdoor</a>
-                    </li>
-                    <li><a href="#.html">Phones &amp; Accessories</a>
-                    </li>
-                    <li><a href="#.html">Books &amp; Office</a>
-                    </li>
-                    <li><a href="#.html">Cars &amp; Motocycles</a>
-                    </li>
-                    <li><a href="#.html">Home Improments</a>
-                    </li>
-                    <li><a href="#.html">Vouchers &amp; Services</a>
-                    </li>
+
+                <?php
+                    $query_select_products_cat =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories") or die(db_conn_error);
+
+                    while($while_product_cat = mysqli_fetch_array($query_select_products_cat)){
+                    
+                        echo '<li><a href="categories.php?id='.$while_product_cat['products_categories_id'].'">'.$while_product_cat['products_categories_name'].'</a>
+                        </li>';
+                        
+
+
+                    }
+
+                ?>
+                    
+                    
                 </ul>
-            </div>
+            </div> 
         </div>
         <!--+createMenu(product_categories, 'menu--mobile')-->
     </div>
@@ -205,182 +141,10 @@
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li class="menu-item-has-children"><a href="index">Home</a><span class="sub-toggle"></span>
-                <ul class="sub-menu">
-                    <li><a href="index.html">Marketplace Full Width</a>
-                    </li>
-                    <li><a href="home-autopart.html">Home Auto Parts</a>
-                    </li>
-                    <li><a href="home-technology.html">Home Technology</a>
-                    </li>
-                    <li><a href="home-organic.html">Home Organic</a>
-                    </li>
-                    <li><a href="home-marketplace.html">Home Marketplace V1</a>
-                    </li>
-                    <li><a href="home-marketplace-2.html">Home Marketplace V2</a>
-                    </li>
-                    <li><a href="home-marketplace-3.html">Home Marketplace V3</a>
-                    </li>
-                    <li><a href="home-marketplace-4.html">Home Marketplace V4</a>
-                    </li>
-                    <li><a href="home-electronic.html">Home Electronic</a>
-                    </li>
-                    <li><a href="home-furniture.html">Home Furniture</a>
-                    </li>
-                    <li><a href="home-kid.html">Home Kids</a>
-                    </li>
-                    <li><a href="homepage-photo-and-video.html">Home photo and picture</a>
-                    </li>
-                    <li><a href="home-medical.html">Home Medical</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="shop-default">Shop</a><span class="sub-toggle"></span>
-                <div class="mega-menu">
-                    <div class="mega-menu__column">
-                        <h4>Catalog Pages<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="shop-default.html">Shop Default</a>
-                            </li>
-                            <li><a href="shop-default.html">Shop Fullwidth</a>
-                            </li>
-                            <li><a href="shop-categories.html">Shop Categories</a>
-                            </li>
-                            <li><a href="shop-sidebar.html">Shop Sidebar</a>
-                            </li>
-                            <li><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>
-                            </li>
-                            <li><a href="shop-carousel.html">Shop Carousel</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Product Layout<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="product-default.html">Default</a>
-                            </li>
-                            <li><a href="product-extend.html">Extended</a>
-                            </li>
-                            <li><a href="product-full-content.html">Full Content</a>
-                            </li>
-                            <li><a href="product-box.html">Boxed</a>
-                            </li>
-                            <li><a href="product-sidebar.html">Sidebar</a>
-                            </li>
-                            <li><a href="product-default.html">Fullwidth</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Product Types<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="product-default.html">Simple</a>
-                            </li>
-                            <li><a href="product-default.html">Color Swatches</a>
-                            </li>
-                            <li><a href="product-image-swatches.html">Images Swatches</a>
-                            </li>
-                            <li><a href="product-countdown.html">Countdown</a>
-                            </li>
-                            <li><a href="product-multi-vendor.html">Multi-Vendor</a>
-                            </li>
-                            <li><a href="product-instagram.html">Instagram</a>
-                            </li>
-                            <li><a href="product-affiliate.html">Affiliate</a>
-                            </li>
-                            <li><a href="product-on-sale.html">On sale</a>
-                            </li>
-                            <li><a href="product-video.html">Video Featured</a>
-                            </li>
-                            <li><a href="product-groupped.html">Grouped</a>
-                            </li>
-                            <li><a href="product-out-stock.html">Out Of Stock</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Woo Pages<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="shopping-cart.html">Shopping Cart</a>
-                            </li>
-                            <li><a href="checkout.html">Checkout</a>
-                            </li>
-                            <li><a href="whishlist.html">Whishlist</a>
-                            </li>
-                            <li><a href="compare.html">Compare</a>
-                            </li>
-                            <li><a href="order-tracking.html">Order Tracking</a>
-                            </li>
-                            <li><a href="my-account.html">My Account</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="">Pages</a><span class="sub-toggle"></span>
-                <div class="mega-menu">
-                    <div class="mega-menu__column">
-                        <h4>Basic Page<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="about-us.html">About Us</a>
-                            </li>
-                            <li><a href="contact-us.html">Contact</a>
-                            </li>
-                            <li><a href="faqs.html">Faqs</a>
-                            </li>
-                            <li><a href="comming-soon.html">Comming Soon</a>
-                            </li>
-                            <li><a href="404-page.html">404 Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Vendor Pages<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="become-a-vendor.html">Become a Vendor</a>
-                            </li>
-                            <li><a href="vendor-store.html">Vendor Store</a>
-                            </li>
-                            <li><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>
-                            </li>
-                            <li><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="">Blogs</a><span class="sub-toggle"></span>
-                <div class="mega-menu">
-                    <div class="mega-menu__column">
-                        <h4>Blog Layout<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="blog-grid.html">Grid</a>
-                            </li>
-                            <li><a href="blog-list.html">Listing</a>
-                            </li>
-                            <li><a href="blog-small-thumb.html">Small Thumb</a>
-                            </li>
-                            <li><a href="blog-left-sidebar.html">Left Sidebar</a>
-                            </li>
-                            <li><a href="blog-right-sidebar.html">Right Sidebar</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Single Blog<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="blog-detail.html">Single 1</a>
-                            </li>
-                            <li><a href="blog-detail-2.html">Single 2</a>
-                            </li>
-                            <li><a href="blog-detail-3.html">Single 3</a>
-                            </li>
-                            <li><a href="blog-detail-4.html">Single 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
+            <li class="menu-item-has-children"><a href="index">Home</a></span></li>
+            <li class="menu-item-has-children"><a href="shop-default">Shop</a></li>
+            <li class="menu-item-has-children"><a href="">Pages</a></li>
+            <li class="menu-item-has-children has-mega-menu"><a href="">Blogs</a></li>
         </ul>
     </div>
 </div>

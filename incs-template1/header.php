@@ -8,10 +8,21 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
+    
+    
+    <!--facebook open graph -->
+    <meta property="og:url" content="<?php 'https://'.$website_name; ?>" />
+    <meta property="og:type" content="website" />
+    <!--<meta property="og:title" content="" />-->
+    <!--<meta property="og:description" content="<?php ?>" />-->
+    <!--<meta property="og:image"   content="<?php ?>" />-->
+    
+    
     <meta name="keywords" content="<?php echo KEY_WORDS;?>">
     <meta name="description" content="<?php echo PAGE_DESCRIPTION;?>">
     <title><?php echo TITLE;?></title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
@@ -24,6 +35,60 @@
     <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color-style.css">
+
+
+
+
+    <script>
+$(document).ready(function(){	
+		$(".form-item").submit(function(e){
+			var form_data = $(this).serialize();
+			var button_content = $(this).find('button[type=submit]');
+			button_content.html('Adding...'); //Loading button text 
+
+			$.ajax({ //make ajax request to cart_process.php
+				url: "cart_process.php",
+				type: "POST",
+				dataType:"json", //expect json value from server
+				data: form_data
+			}).done(function(data){ //on Ajax success
+				$("#cart-info").html(data.items); //total items in cart-info element
+				button_content.html('Add to Cart'); //reset button text to original text
+				alert("Item added to Cart!"); //alert user
+				if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
+					$(".cart-box").trigger( "click" ); //trigger click to update the cart box.
+				}
+			})
+			e.preventDefault();
+		});
+
+	//Show Items in Cart
+	$( ".cart-box").click(function(e) { //when user clicks on cart box
+		e.preventDefault(); 
+		$(".shopping-cart-box").fadeIn(); //display cart box
+		$("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //show loading image
+		$("#shopping-cart-results" ).load( "cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+	});
+	
+	//Close Cart
+	$( ".close-shopping-cart-box").click(function(e){ //user click on cart box close link
+		e.preventDefault(); 
+		$(".shopping-cart-box").fadeOut(); //close cart-box
+	});
+	
+	//Remove items from cart
+	$("#shopping-cart-results").on('click', 'a.remove-item', function(e) {
+		e.preventDefault(); 
+		var pcode = $(this).attr("data-code"); //get product code
+		$(this).parent().fadeOut(); //remove item element from box
+		$.getJSON( "cart_process.php", {"remove_code":pcode} , function(data){ //get Item count from Server
+			$("#cart-info").html(data.items); //update Item count in cart-info
+			$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
+		});
+	});
+
+});
+</script>
 </head>
 
 <body>

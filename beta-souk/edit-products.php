@@ -312,7 +312,7 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
 
 
 
-?>
+
 
  <div class="ps-section__right">
                             <form class="ps-form--account-setting" action="" method="POST">

@@ -52,7 +52,7 @@ $LOGO_IMG_FILENAME = "";
 //cover image filename
 $CAROUSEL_IMAGE_FILENAME = "2.jpg";		//870px x 431px
 //Password
-$pass_word = "";
+$pass_word = "";    //Mxs@2Wxh5Q.9
 		
 
 

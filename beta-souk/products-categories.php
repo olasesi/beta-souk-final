@@ -174,7 +174,7 @@ if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1){
                         </div>
 
 <?php
-     $select_products_cat = mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories") or die(db_conn_error);
+     $select_products_cat = mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories WHERE products_categories_name != '".UNCATEGORIZED."'") or die(db_conn_error);
 
      if(mysqli_num_rows($select_products_cat) > 0){
 

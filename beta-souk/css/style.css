@@ -1903,43 +1903,59 @@ button {
   transition-delay: 0.3s;
 }
 
-#back2top {
+#scrool {
   position: fixed;
   display: flex;
+  flex-direction: column-reverse;
+  row-gap: 10px;
   justify-content: center;
   align-items: center;
   bottom: 30px;
   right: 30px;
-  width: 40px;
-  height: 40px;
   z-index: 10000;
-  border: none;
-  border: 1px solid #ddd;
   transition: all .4s ease;
-  box-shado: 0 0 3px 0 rgba(0, 0, 0, 0.2);
-  background-color: transparent;
-  border-radius: 4px;
-  visibility: hidden;
-  opacity: 0;
+ 
 }
 
-#back2top i {
-  z-index: 10001;
+.back2top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 4px;
+  border: none;
+  border: 1px solid #ddd;
+  width: 40px;
+  height: 40px;
+  z-index: 10005;
+  visibility: hidden;
+  opacity: 0;
+
+}
+
+#scrool.active .back2top {
+  visibility: visible;
+  opacity: 1;
+}
+
+.back2top i { 
+  z-index: 10020;
   font-size: 14px;
-  margin-bottom: -2px;
   color: #000;
 }
 
-#back2top:hover {
+.back2top:hover {
   cursor: pointer;
   background-color: #fcb800;
   border-color: #fcb800;
 }
 
-#back2top.active {
-  bottom: 30px;
-  visibility: visible;
-  opacity: 1;
+.whatsapp i { 
+  z-index: 10020;
+  font-size: 45px;
+  transition: all .4s ease;
+  color: #25D366;
 }
 
 .form-control {

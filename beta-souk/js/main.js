@@ -549,21 +549,22 @@
 
     function backToTop() {
         var scrollPos = 0;
-        var element = $('#back2top');
+        var scroolContainer = $('#scrool')
+        var element = $('.back2top');
         $(window).scroll(function() {
             var scrollCur = $(window).scrollTop();
             if (scrollCur > scrollPos) {
                 // scroll down
                 if (scrollCur > 500) {
-                    element.addClass('active');
+                   scroolContainer.addClass('active');
                 } else {
-                    element.removeClass('active');
+                   scroolContainer.removeClass('active');
                 }
             } else {
                 // scroll up
-                element.removeClass('active');
+               scroolContainer.removeClass('active');
             }
-
+    
             scrollPos = scrollCur;
         });
 
