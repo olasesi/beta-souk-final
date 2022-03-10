@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 10, 2022 at 10:25 AM
+-- Generation Time: Mar 10, 2022 at 11:33 PM
 -- Server version: 5.7.37-cll-lve
 -- PHP Version: 7.3.33
 
@@ -41,8 +41,8 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_name`, `banner_image`, `banner_size`, `banner_timestamp`) VALUES
-(1, 'banner 1', 'default.jpg', '', '2022-03-07 12:09:45'),
-(2, 'banner 2', 'default.jpg', '', '2022-03-07 12:10:03'),
+(1, 'banner 1', '1be18723c6ae39c857d48a60ab9f779e3f3e0184.jpg', '', '2022-03-10 12:00:34'),
+(2, 'banner 2', 'c1102ff54b45f242018fe7d686f9c8ee8bfb7983.jpg', '', '2022-03-10 12:01:52'),
 (3, 'banner 3', 'default-2.jpg', '', '2022-03-07 14:23:42'),
 (4, 'banner 4', 'default-2.jpg', '', '2022-03-07 14:24:01'),
 (5, 'banner 5', 'default-2.jpg', '', '2022-03-07 14:24:28'),
@@ -92,7 +92,14 @@ INSERT INTO `orders` (`orders_id`, `orders_firstname`, `orders_surname`, `orders
 (15, 'tee', 'lee', 'test@gmail.com', '09099887766', 'alaka', 'alake', '400', 'football', '2022-03-09 14:42:47', '1JC8EH8TLC', 0),
 (16, 'tee', 'lee', 'test@gmail.com', '09099887766', 'alake', 'alaka', '400', 'football', '2022-03-09 14:50:39', 'EC5AY9KGF5', 0),
 (17, 'tee', 'lee', 'test@gmail.com', '09088776655', 'alake', 'alaka', '2000', 'trouser', '2022-03-09 14:55:56', 'OSOKJARQG5', 0),
-(18, 'tee', 'lee', 'test@gmail.com', '09088776655', 'alake', 'alaka', '400', 'football', '2022-03-09 15:22:24', 'T9MM099U1L', 0);
+(18, 'tee', 'lee', 'test@gmail.com', '09088776655', 'alake', 'alaka', '400', 'football', '2022-03-09 15:22:24', 'T9MM099U1L', 0),
+(19, 'Tee', 'Lee', 'nisajav116@ketchet.com', '09088776655', 'Alaka', 'Alake', '3000', 'Shirt', '2022-03-10 09:52:35', 'OUML5PPI4C', 0),
+(20, 'Tee', 'Lee', 'nisajav116@ketchet.com', '09088776655', 'Alaka', 'Alake', '3000', 'Shirt', '2022-03-10 09:52:35', 'SOYUI1PTKC', 0),
+(21, 'Tee', 'Lee', 'nisajav116@ketchet.com', '09088776655', 'Alaka', 'Alake', '3000', 'Shirt', '2022-03-10 09:52:39', '9RC9CLIZRH', 0),
+(22, 'tee', 'lee', 'nisajav116@ketchet.com', '09088776655', 'alaka', 'alake', '3000', 'Shirt', '2022-03-10 09:56:25', '6FJOXWWRF5', 0),
+(23, 'tee', 'LEE', 'nisajav116@ketchet.com', '09099887766', 'alaka', 'alake', '3000', 'Shirt', '2022-03-10 10:01:06', 'DO32WUA0RD', 0),
+(24, 'tee', 'lee', 'nisajav116@ketchet.com', '09088776655', 'alaka', 'alake', '400', 'football', '2022-03-10 11:11:00', '7JQ7FAQEMS', 0),
+(25, 'tee', 'lee', 'nisajav116@ketchet.com', '09088776655', 'alaka', 'alake', '2000', 'trouser', '2022-03-10 11:23:26', '5GZK6QT5SQ', 0);
 
 -- --------------------------------------------------------
 
@@ -130,7 +137,12 @@ INSERT INTO `products` (`products_id`, `products_name`, `products_price`, `produ
 (7, 'earpod', '7000', '', 4, '0', '0', '0', '0', '0', '', '', '8a6a9bde3acd7397559b6383179d3445cee822eb.jpg', '2022-03-08 18:34:36'),
 (8, 'hpfolio', '4000', '', 5, '0', '0', '0', '0', '0', '', '', '52b3f1516a99126b69c9d3fa88eff9823e06ae8b.jpg', '2022-03-08 18:35:37'),
 (9, 'milk', '500', '250', 1, '0', '0', '0', '0', '0', '', '', '7b388c62201eb0f508747b305618ae865ea377ee.jpg', '2022-03-09 00:02:39'),
-(10, 'chain', '5000', '', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'default.jpg', '2022-03-09 11:26:41');
+(10, 'chain', '5000', '', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'default.jpg', '2022-03-09 11:26:41'),
+(11, 'Duplex', '10000000', '', 6, '0', '0', '0', '0', '0', 'A Duplex with three Bedroom and four parlor', '', 'b6911b2fa170c71baa12ff8ffa84f7e24e975256.jpg', '2022-03-10 12:10:40'),
+(12, 'Perfume', '20000', '18000', 2, '0', '0', 'New arrivals', 'Best bellers', '0', 'nice perfume', 'nice perfume', 'default.jpg', '2022-03-10 17:30:23'),
+(13, 'A plate of food', '1000', '', 3, 'Hot promotion', '0', 'New arrivals', '0', '0', '', '', '330671bfefe630479b550f54eed0b3a7ffb4f58b.png', '2022-03-10 15:11:05'),
+(14, 'slippers', '1000', '700', 2, '0', 'Deals of the day', '0', '0', '0', 'nice slippers', '', 'd75f257547b186d3de22a93e6a932c56cf611749.jpg', '2022-03-10 17:35:30'),
+(15, 'hat', '3000', '1000', 2, '0', '0', 'New arrivals', '0', '0', 'nice har', '', 'default.jpg', '2022-03-10 17:36:20');
 
 -- --------------------------------------------------------
 
@@ -153,7 +165,9 @@ INSERT INTO `products_categories` (`products_categories_id`, `products_categorie
 (2, 'Clothings', '2022-03-07 10:00:00'),
 (3, 'food', '2022-03-07 20:04:05'),
 (4, 'electronics', '2022-03-08 09:53:28'),
-(5, 'laptops', '2022-03-08 09:54:01');
+(5, 'laptops', '2022-03-08 09:54:01'),
+(6, 'Housing', '2022-03-10 12:02:57'),
+(7, 'text', '2022-03-10 17:53:37');
 
 -- --------------------------------------------------------
 
@@ -174,9 +188,9 @@ CREATE TABLE `slider_banner` (
 --
 
 INSERT INTO `slider_banner` (`slider_id`, `slider_banner_name`, `slider_banner_image`, `slider_banner_size`, `slider_banner_timestamp`) VALUES
-(1, 'Slider banner 1', 'default.jpg', '1230 by 425', '2022-03-07 12:06:14'),
-(2, 'Slider banner 2', 'default.jpg', '1230 by 425', '2022-03-07 12:06:30'),
-(3, 'Slider banner 3', 'default.jpg', '1230 by 425', '2022-03-07 12:06:47');
+(1, 'Slider banner 1', '788921f0256307b2bbc4f3fd5745f0f0b26f08f1.jpg', '1230 by 425', '2022-03-10 11:59:24'),
+(2, 'Slider banner 2', '596bae1d7602f82df60afc9c8c45fb010421a5ac.jpg', '1230 by 425', '2022-03-10 11:47:41'),
+(3, 'Slider banner 3', 'ccb11765df69ca932fba486c8c74a4b79104f44a.jpg', '1230 by 425', '2022-03-10 11:48:35');
 
 -- --------------------------------------------------------
 
@@ -198,7 +212,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `active`, `email`, `password`, `cookies_session`, `timestamp`) VALUES
-(1, 1, 'test@gmail.com', 'password', '', '2022-03-09 19:45:11');
+(1, 1, 'test@gmail.com', 'password', '', '2022-03-10 17:55:44');
 
 --
 -- Indexes for dumped tables
@@ -254,19 +268,19 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `products_categories`
 --
 ALTER TABLE `products_categories`
-  MODIFY `products_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `products_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `slider_banner`
