@@ -2,8 +2,12 @@
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
 <?php include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
-
-
+<?php 
+unset($_SESSION['email_customer']);
+unset($_SESSION['price']);
+unset($_SESSION['product_name']);
+unset($_SESSION['ref']);
+?>
 
 
 <div id="homepage-1">

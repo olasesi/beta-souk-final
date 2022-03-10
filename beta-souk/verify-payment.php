@@ -26,18 +26,36 @@ if (array_key_exists('data', $result) && array_key_exists('status', $result['dat
 
    
     mysqli_query($connect, "UPDATE orders SET orders_status='1' WHERE orders_reference = '".$_GET['reference']."' AND orders_reference = '0'") or die(db_conn_error);
-    $_SESSION['email_customer'] = array();
-    $_SESSION['price'] = array();
-    $_SESSION['product_name'] = array();
-    $_SESSION['ref'] = array();
- echo '<h1 class="text-center">Congratulations. Your payment was successful</h1>
- <p>You will be contacted soon</p>
+    unset($_SESSION['email_customer']);
+      unset($_SESSION['price']);
+      unset($_SESSION['product_name']);
+      unset($_SESSION['ref']);
+ echo ' <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Payment Success</li>
+                </ul>
+            </div>
+        </div>
+        <section class="ps-section--account">
+            <div class="container">
+                <div class="ps-block--payment-success">
+                    <h3>Payment Success !</h3>
+                    <p>Thanks for your payment. Please visit<a href="user-information.html"> here</a> to check your order status.</p>
+                </div>
+            </div>
+        </section>
  
  ';
    
 //Perform necessary action
 }else{
    echo '<h3>Payment was not successful</h3>';
+    unset($_SESSION['email_customer']);
+      unset($_SESSION['price']);
+      unset($_SESSION['product_name']);
+      unset($_SESSION['ref']);
 }
 
 

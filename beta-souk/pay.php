@@ -3,11 +3,8 @@
 <?php
 
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
 	 
-  
-
 
     $result = array();
 
@@ -15,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
     $postdata = [
         'email' => $_SESSION['email_customer'],
         'amount' => $_SESSION['price']*100,
-        'reference' => $_SESSION['ref'] ,
-        'callback_url' => 'verify-payment.php'
+        'reference' => $_SESSION['ref'],
+        'callback_url' => GEN_WEBSITE.'/verify-payment.php'
     ];
     
     $url = "https://api.paystack.co/transaction/initialize";
@@ -46,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
     
     }
 
+
+exit();
 
 
 
@@ -100,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
                                            
                                             </figure>
                                             <figure>
-                                                <figcaption><strong>Subtotal</strong><strong>&#8358;<?php echo number_format($_SESSION['price']);?></strong></figcaption>
+                                                <figcaption><strong>Subtotal</strong><strong><?php echo $_SESSION['price']?></strong></figcaption>
                                             </figure>
                                                        
                                             

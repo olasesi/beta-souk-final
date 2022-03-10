@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 09, 2022 at 01:26 AM
+-- Generation Time: Mar 10, 2022 at 10:25 AM
 -- Server version: 5.7.37-cll-lve
 -- PHP Version: 7.3.33
 
@@ -70,6 +70,30 @@ CREATE TABLE `orders` (
   `orders_status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orders_id`, `orders_firstname`, `orders_surname`, `orders_email`, `orders_phone`, `orders_address`, `orders_city`, `orders_name`, `orders_price`, `orders_timestamp`, `orders_reference`, `orders_status`) VALUES
+(1, 'Ahmed', 'Olusesi', 'ola.sesi@yahoo.com', '08074574512', 'Ikeja', 'Lagos', '500', 'football', '2022-03-09 11:03:44', 'DGM698UWXM', 0),
+(2, 'fgr', 'tyyyy', 'test@gmail.com', '08066776655', '2, 443333', 'abuja', '5000', 'chain', '2022-03-09 11:29:05', 'PY2FAUHHP3', 0),
+(3, 'wale', 'ayo', 'test@gmail.com', '09088776543', 'adekunle street', 'ajah', '2000', 'trouser', '2022-03-09 11:34:08', 'ZD88VDYLPJ', 0),
+(4, 'tee', 'lee', 'nisajav116@ketchet.com', '09088776654', 'alade', 'alaka', 'â‚¦400', 'football', '2022-03-09 13:09:46', 'B1HDH3T403', 0),
+(5, 'Ahmed', 'Olusesi', 'ola.sesi@yahoo.com', '08074574512', 'Ikeja', 'Lagos', '0', '0', '2022-03-09 13:11:10', '2HXTOLLQXB', 0),
+(6, 'Ahmed', 'Olusesi', 'rasheed@rasheed.com', '08074574512', 'Ikeja', 'Lagos', '2000', 'trouser', '2022-03-09 13:29:34', 'J3CTQQ5UMD', 0),
+(7, 'ahmed', 'oladipupo', 'ola.sesi@yahoo.com', '08075675612', 'ikeja', 'lagos', 'â‚¦400', 'football', '2022-03-09 13:33:20', '1VL0V0KMYW', 0),
+(8, 'tee', 'att', 'test@gmail.com', '09099999999', 'adeleke', 'kano', 'â‚¦400', 'football', '2022-03-09 13:41:07', 'IJU6S25PEA', 0),
+(9, 'Ahmed', 'Olusesi', 'ola.sesi@yahoo.com', '08074574512', 'Ikeja', 'Lagos', 'â‚¦400', 'football', '2022-03-09 13:43:28', 'FRKGPSW2HY', 0),
+(10, 'tee', 'lee', 'test@gmail.com', '09099887765', 'alake', 'alaka', 'â‚¦400', 'football', '2022-03-09 13:52:57', 'U7WMBMFJPE', 0),
+(11, 'ade', 'ade', 'test@gmail.com', '09099887766', 'alaka', 'alake', 'â‚¦250', 'milk', '2022-03-09 14:07:38', 'G97Z9BJ1H6', 0),
+(12, 'ade', 'ada', 'test@gmail.com', '09099887766', 'alaka', 'alake', 'â‚¦250', 'milk', '2022-03-09 14:12:43', 'LI852O46P8', 0),
+(13, 'ahmed', 'olusesi', 'ola.sesi@yahoo.com', '08074574512', 'ikeja', 'lagos', 'â‚¦2,000', 'trouser', '2022-03-09 14:18:46', '9PVEQQAVUI', 0),
+(14, 'ahmed', 'olusesi', 'ola.sesi@yahoo.com', '08074574512', 'ikeja', 'lagos', 'â‚¦3,000', 'Shirt', '2022-03-09 14:25:53', '39KIHPDYH1', 0),
+(15, 'tee', 'lee', 'test@gmail.com', '09099887766', 'alaka', 'alake', '400', 'football', '2022-03-09 14:42:47', '1JC8EH8TLC', 0),
+(16, 'tee', 'lee', 'test@gmail.com', '09099887766', 'alake', 'alaka', '400', 'football', '2022-03-09 14:50:39', 'EC5AY9KGF5', 0),
+(17, 'tee', 'lee', 'test@gmail.com', '09088776655', 'alake', 'alaka', '2000', 'trouser', '2022-03-09 14:55:56', 'OSOKJARQG5', 0),
+(18, 'tee', 'lee', 'test@gmail.com', '09088776655', 'alake', 'alaka', '400', 'football', '2022-03-09 15:22:24', 'T9MM099U1L', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -105,7 +129,8 @@ INSERT INTO `products` (`products_id`, `products_name`, `products_price`, `produ
 (6, 'cookies', '200', '33', 2, '0', '0', '0', '0', '0', '', '', '981f8fecf908a400bc4914bea4dd25de9ad0552e.jpg', '2022-03-08 18:25:33'),
 (7, 'earpod', '7000', '', 4, '0', '0', '0', '0', '0', '', '', '8a6a9bde3acd7397559b6383179d3445cee822eb.jpg', '2022-03-08 18:34:36'),
 (8, 'hpfolio', '4000', '', 5, '0', '0', '0', '0', '0', '', '', '52b3f1516a99126b69c9d3fa88eff9823e06ae8b.jpg', '2022-03-08 18:35:37'),
-(9, 'milk', '500', '250', 1, '0', '0', '0', '0', '0', '', '', '7b388c62201eb0f508747b305618ae865ea377ee.jpg', '2022-03-09 00:02:39');
+(9, 'milk', '500', '250', 1, '0', '0', '0', '0', '0', '', '', '7b388c62201eb0f508747b305618ae865ea377ee.jpg', '2022-03-09 00:02:39'),
+(10, 'chain', '5000', '', 2, '0', 'Deals of the day', '0', '0', '0', '', '', 'default.jpg', '2022-03-09 11:26:41');
 
 -- --------------------------------------------------------
 
@@ -173,7 +198,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `active`, `email`, `password`, `cookies_session`, `timestamp`) VALUES
-(1, 1, 'test@gmail.com', 'password', '', '2022-03-09 00:10:05');
+(1, 1, 'test@gmail.com', 'password', '', '2022-03-09 19:45:11');
 
 --
 -- Indexes for dumped tables
@@ -229,13 +254,13 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products_categories`

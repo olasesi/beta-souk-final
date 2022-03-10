@@ -68,13 +68,10 @@ while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
                                        
                                     </div> 
                                 </div>
-                                <h4 class="ps-product__price"><?php if(!empty($row_single['products_price'])){echo '&#8358;'.number_format($row_single['products_price']);}  ?></h4>
+                                <h4 class="ps-product__price"><?php if(empty($row_single['products_sales_price'])){echo '&#8358;'.number_format($row_single['products_price']);}else{echo '&#8358;'.number_format($row_single['products_sales_price']);}  ?></h4>
                                 <div class="ps-product__desc">
                                    
-                                    <ul class="ps-list--dot">
-                                       
-                                        <li><?php echo $row_single['products_short_description']; ?></li>
-                                    </ul>
+                                   
                                 </div>
                                
                                 <div class="ps-product__shopping">
@@ -82,9 +79,11 @@ while($row_single = mysqli_fetch_array($query_sel_pro_sec)){
                                        
 
                                     <form method="POST" action="checkout.php">
-                                        <input type="hidden" name="price" value="<?php echo $row_single['products_price']; ?>" />
+                                        <input type="hidden" name="price" value="<?php if(empty($row_single['products_sales_price'])) {echo $row_single['products_price'];
+                                        }else {echo $row_single['products_sales_price'];
+                                        } ?>" />
                                         <input type="hidden" name="product_name" value="<?php echo $row_single['products_name']; ?>" />
-                                   <button class="ps-btn" type="submit" name="buy_button"> Buy Now</button>
+                                   <button class="ps-btn d-block d-sm-block" type="submit" name="buy_button"> Buy Now</button>
 </form>
                                     
                                 </div>
