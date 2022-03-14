@@ -1,12 +1,15 @@
 <?php require_once ('../incs-template1/config.php'); ?>
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
-<?php include ('../incs-template1/header.php'); ?>
+<?php 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
 <?php 
-unset($_SESSION['email_customer']);
-unset($_SESSION['price']);
-unset($_SESSION['product_name']);
-unset($_SESSION['ref']);
+//unset($_SESSION['email_customer']);
+//unset($_SESSION['price']);
+//unset($_SESSION['product_name']);
+//unset($_SESSION['ref']);
+
 ?>
 
 
@@ -60,6 +63,7 @@ if(isset($_SESSION['user_id'])){
             </div>
         </div>
     </div>
+
     <div class="ps-site-features">
         <div class="ps-container">
             <div class="ps-block--site-features">
@@ -151,7 +155,15 @@ if(isset($_SESSION['user_id'])){
                     }
                     echo    '
                     <ul class="ps-product__actions">
-                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                    
+                    
+
+                    <form method="POST" action="">
+                    <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+                   <button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+                   </form>
+                    
+                    
 
                     </ul>
                     </div>
@@ -284,7 +296,10 @@ if(isset($_SESSION['user_id'])){
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>
@@ -399,8 +414,10 @@ echo '
                                         ';}
                                         echo    
                                         '<ul class="ps-product__actions">
-                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-
+                                        <form method="POST" action="">
+                                        <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+                                       <button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+                                       </form>
                                         </ul>
                                      </div>
 
@@ -513,7 +530,10 @@ echo '
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>
@@ -626,7 +646,10 @@ echo '
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>
@@ -739,7 +762,10 @@ echo '
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>
@@ -852,7 +878,10 @@ echo '
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>
@@ -965,7 +994,10 @@ echo '
         }
 echo    '
 <ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+<form method="POST" action="">
+<input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+</form>
 
 </ul>
 </div>

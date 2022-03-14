@@ -578,32 +578,32 @@
         });
     }
 
-    function modalInit() {
-        var modal = $('.ps-modal');
-        if (modal.length) {
-            if (modal.hasClass('active')) {
-                $('body').css('overflow-y', 'hidden');
-            }
-        }
-        modal.find('.ps-modal__close, .ps-btn--close').on('click', function(e) {
-            e.preventDefault();
-            $(this)
-                .closest('.ps-modal')
-                .removeClass('active');
-        });
-        $('.ps-modal-link').on('click', function(e) {
-            e.preventDefault();
-            var target = $(this).attr('href');
-            $(target).addClass('active');
-            $('body').css('overflow-y', 'hidden');
-        });
-        $('.ps-modal').on('click', function(event) {
-            if (!$(event.target).closest('.ps-modal__container').length) {
-                modal.removeClass('active');
-                $('body').css('overflow-y', 'auto');
-            }
-        });
-    }
+    // function modalInit() {
+    //     var modal = $('.ps-modal');
+    //     if (modal.length) {
+    //         if (modal.hasClass('active')) {
+    //             $('body').css('overflow-y', 'hidden');
+    //         }
+    //     }
+    //     modal.find('.ps-modal__close, .ps-btn--close').on('click', function(e) {
+    //         e.preventDefault();
+    //         $(this)
+    //             .closest('.ps-modal')
+    //             .removeClass('active');
+    //     });
+    //     $('.ps-modal-link').on('click', function(e) {
+    //         e.preventDefault();
+    //         var target = $(this).attr('href');
+    //         $(target).addClass('active');
+    //         $('body').css('overflow-y', 'hidden');
+    //     });
+    //     $('.ps-modal').on('click', function(event) {
+    //         if (!$(event.target).closest('.ps-modal__container').length) {
+    //             modal.removeClass('active');
+    //             $('body').css('overflow-y', 'auto');
+    //         }
+    //     });
+    // }
 
     function searchInit() {
         var searchbox = $('.ps-search');
@@ -908,8 +908,8 @@
         $('.ps-product--quickview .ps-product__images').slick('setPosition');
     });
 
-    $(window).on('load', function() {
-        $('body').addClass('loaded');
-        subscribePopup();
-    });
+    // $(window).on('load', function() {
+    //     $('body').addClass('loaded');
+    //     subscribePopup();
+    // });
 })(jQuery);

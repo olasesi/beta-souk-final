@@ -9,7 +9,9 @@ if(!isset($_GET['id'])){
 ?>
 
 
-<?php include ('../incs-template1/header.php'); ?>
+<?php 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
 
 <?php 

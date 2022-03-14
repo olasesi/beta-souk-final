@@ -3,17 +3,6 @@
 <?php
 
 
-
-if(isset($_POST['product_name']) AND isset($_POST['price'])){
-   $_SESSION['product_name'] = $_POST['product_name'];
-   $_SESSION['price'] = $_POST['price'];
-   
-}
-if(!isset($_SESSION['product_name']) OR !isset($_SESSION['product_name'])){
-    $_SESSION['product_name'] = 0;
-    $_SESSION['price'] = 0;
-}
-
 if (!isset($errors)){$errors = array();}
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['checkout'])){
 	 
@@ -56,17 +45,30 @@ if(preg_match('/^(0)[0-9]{10}$/i',$_POST['phone'])){
 	}  
 
 
-
+if(isset($_SESSION['shopping_cart']) AND !empty($_SESSION['shopping_cart'])){
 
 	if (empty($errors)){
-      $ref = genReference(10);
+
+        $all_total_price = 0;
+      foreach($_SESSION['shopping_cart'] as $codename => $codearray){
+
+        $all_total_price += $codearray['price'] * $codearray['quantity'];
+      }  
+       
+      
+      
+        $ref = genReference(10);
     $q = mysqli_query($connect,"INSERT INTO orders (orders_firstname, orders_surname, orders_email, orders_phone, orders_address, orders_city, orders_name, orders_price, orders_reference) 
-    VALUES ('".$firstname."','".$surname."', '".$email."', '".$phone."', '".$address."','".$city."', '".$_SESSION['price']."', '".$_SESSION['product_name']."', '".$ref."')") or die(db_conn_error);
+    VALUES ('".$firstname."','".$surname."', '".$email."', '".$phone."', '".$address."','".$city."', 'products', '".$all_total_price."', '".$ref."')") or die(db_conn_error);
 
 if(mysqli_affected_rows($connect) == 1){
 
-    $_SESSION['email_customer'] = $email;
-    $_SESSION['ref'] = $ref; 
+    
+
+
+    $_SESSION['customer']['email_customer'] = $email;
+    $_SESSION['customer']['surname_customer'] = $surname;
+    $_SESSION['customer']['ref'] = $ref; 
 
     header("Location:pay.php");
 	exit();
@@ -88,6 +90,15 @@ if(mysqli_affected_rows($connect) == 1){
     }
 
 
+}else{
+    
+     header("Location:/");
+	exit();
+    
+}
+
+
+
 
     }
  
@@ -96,7 +107,9 @@ if(mysqli_affected_rows($connect) == 1){
 
 
 
-<?php include ('../incs-template1/header.php'); ?>
+<?php 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
 
 

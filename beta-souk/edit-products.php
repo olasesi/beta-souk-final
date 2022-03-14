@@ -259,7 +259,7 @@ $image_uploaded = (isset($_SESSION['images']['new_name']))?$_SESSION['images']['
 
 
 
-
+  include ('../incs-template1/adding-to-cart.php'); 
  include ('../incs-template1/header.php'); ?>
 
 <?php include ('../incs-template1/settings.php'); ?>

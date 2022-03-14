@@ -184,8 +184,9 @@ VALUES ('".$products_name."','".$products_price."','".$products_sales_price."','
 
 
 
-
- include ('../incs-template1/header.php'); 
+ 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); 
  include ('../incs-template1/settings.php');
  ?>
 

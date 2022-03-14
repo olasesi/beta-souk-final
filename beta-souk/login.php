@@ -58,7 +58,9 @@ if(empty($login_array)){
 
 
 
-<?php include ('../incs-template1/header.php'); ?>
+<?php 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); ?>
 
 <div class="ps-page--my-account">
     <div class="ps-breadcrumb">

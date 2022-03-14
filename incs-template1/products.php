@@ -11,23 +11,47 @@ $select_products3 = mysqli_query($connect,"SELECT * FROM ".$statement." LIMIT $s
 
 			 if (mysqli_num_rows($select_products3)> 0){
 				while($rows_loop = mysqli_fetch_array($select_products3)){
+
+                    
+// $result = mysqli_query($connect,"SELECT * FROM `products`");
+/* while($row = mysqli_fetch_assoc($result)){
+    echo "<div class='product_wrapper'>
+    <form method='post' action=''>
+    <input type='hidden' name='products_id' value=".$row['products_id']." />
+    <div class='image'><img src='".$row['products_image']."' /></div>
+    <div class='name'>".$row['products_name']."</div>
+    <div class='price'>$".$row['products_price']."</div>
+    <button type='submit' class='buy'>Buy Now</button>
+    </form>
+    </div>";
+        } */
+//mysqli_close($connect);
+
+
                     echo '
-<div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-6 ">
-<div class="ps-product">
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-6 ">
+    <form method="post" action="">
+    <div class="ps-product">
     <div class="ps-product__thumbnail">
-        <a href="product-description.php?id='.$rows_loop['products_id'].'"><img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
+        <a href="product-description.php?id='.$rows_loop['products_id'].'">
+        <img src="images/products/'.$rows_loop['products_image'].'" alt="'.$rows_loop['products_name'].'" /></a>';
         if(!empty($rows_loop['products_sales_price'])){
             $dis = 100 - ceil($rows_loop['products_sales_price']/$rows_loop['products_price']*100);
             echo '
             <div class="ps-product__badge">-'.$dis.'%</div>
             ';
         }
-echo    '
-<ul class="ps-product__actions">
-<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+        echo    '
 
-</ul>
-</div>
+        <form method="POST" action=""> 
+        <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+            <div class="ps-product__actions">
+                <button type="submit"><i class="icon-bag2"></i></button>
+            </div>
+        </form>
+        
+        
+        </div>
 
 
 
@@ -72,6 +96,7 @@ echo '
             </div>
        
 </div>
+</form>
 </div>
 
 ';
@@ -88,3 +113,4 @@ echo '
 }else{
     echo '<h5 class="text-center">No result found</h5>';
  }
+?>

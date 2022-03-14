@@ -1,18 +1,26 @@
 <?php require_once ('../incs-template1/config.php'); ?>
 <?php include_once ('../incs-template1/cookie-session.php'); ?>
 <?php
+ $all_total_price = 0;
+ 
+ foreach($_SESSION['shopping_cart'] as $codename => $codearray){
 
-
+    $all_total_price += $codearray['price'] * $codearray['quantity'];
+  } 
+  
+  
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
 	 
 
     $result = array();
 
     //Set other parameters as keys in the $postdata array
+
+
     $postdata = [
-        'email' => $_SESSION['email_customer'],
-        'amount' => $_SESSION['price']*100,
-        'reference' => $_SESSION['ref'],
+        'email' => $_SESSION['customer']['email_customer'],
+        'amount' => $all_total_price*100,
+        'reference' => $_SESSION['customer']['ref'],
         'callback_url' => GEN_WEBSITE.'/verify-payment.php'
     ];
     
@@ -41,6 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['pay'])){
     
         header('Location: ' . $result['data']['authorization_url']);
     
+    }else{
+        
+         unset($_SESSION['shopping_cart']);
+         unset($_SESSION['customer']);
     }
 
 
@@ -72,7 +84,9 @@ exit();
 
 
 
-<?php include ('../incs-template1/header.php'); ?>
+<?php 
+include ('../incs-template1/adding-to-cart.php'); 
+include ('../incs-template1/header.php'); ?>
 <?php include ('../incs-template1/settings.php'); ?>
 
 
@@ -93,13 +107,26 @@ exit();
                                             <figure>
                                                 <figcaption><strong>Product/Service</strong><strong>Total</strong></figcaption>
                                             </figure>
-                                            <figure class="ps-block__items"><a><strong><?php echo $_SESSION['product_name']; ?></strong>
-                                           <small><?php echo '1 x '.$_SESSION['product_name'];?></small></a>
+                                            
+                                            <?php
+                                            
+                                            foreach($_SESSION['shopping_cart'] as $codename => $codearray){
+                                                
+                                                echo '<figure class="ps-block__items"><a>
+                                                <strong>'.$codearray['name'].'</strong>';
+                                          
+                                                echo '<small> &#8358;'.$codearray['price'] * $codearray['quantity'].'</small></a>
                                             
                                            
-                                            </figure>
+                                            </figure>';
+
+
+} 
+ 
+?>
+                                          
                                             <figure>
-                                                <figcaption><strong>Subtotal</strong><strong><?php echo $_SESSION['price']?></strong></figcaption>
+                                                <figcaption><strong>Subtotal</strong><strong><?php echo '&#8358;'.$all_total_price?></strong></figcaption>
                                             </figure>
                                                        
                                             
