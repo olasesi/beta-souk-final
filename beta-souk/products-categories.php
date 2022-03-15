@@ -10,8 +10,8 @@ if(!isset($_SESSION['user_id'])){
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['delete_categories'])){
 
-    $query_products_categories = mysqli_query($connect,"UPDATE products SET products_sub_categories = '".UNCATEGORIZED."' WHERE products_categories_id = '".$_POST['delete_categories']."'") or die(db_conn_error);
-
+    $query_products_categories = mysqli_query($connect,"UPDATE products SET products_sub_categories = '1' WHERE products_sub_categories = '".$_POST['delete_categories']."'") or die(db_conn_error);
+   
 
     mysqli_query($connect, "DELETE FROM products_categories WHERE products_categories_id = '".$_POST['delete_categories']."'") or die(db_conn_error);
 
