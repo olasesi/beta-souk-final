@@ -43,7 +43,10 @@
 
     <header class="header header--1" data-sticky="true">
 
-    
+        <?php
+            echo '<div style="clear:both;"></div>'.$status.''
+                ;
+        ?>
         <div class="header__top">
             <div class="ps-container">
                 <div class="header__left">
@@ -52,19 +55,19 @@
                         <div class="menu__content">
                             <ul class="menu--dropdown">
                               
-<?php
-	$query_select_products_cat =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories") or die(db_conn_error);
+                        <?php
+                            $query_select_products_cat =  mysqli_query($connect, "SELECT products_categories_id, products_categories_name FROM products_categories") or die(db_conn_error);
 
-    while($while_product_cat = mysqli_fetch_array($query_select_products_cat)){
-      
-        echo '<li><a href="categories.php?id='.$while_product_cat['products_categories_id'].'">'.$while_product_cat['products_categories_name'].'</a>
-        </li>';
-        
+                            while($while_product_cat = mysqli_fetch_array($query_select_products_cat)){
+                            
+                                echo '<li><a href="categories.php?id='.$while_product_cat['products_categories_id'].'">'.$while_product_cat['products_categories_name'].'</a>
+                                </li>';
+                                
 
 
-    }
+                            }
 
-?>
+                        ?>
 
                                
                                
@@ -92,67 +95,28 @@
                              
 
 
-<?php
- if(!empty($_SESSION["shopping_cart"])) {
-$cart_count = count(array_keys($_SESSION["shopping_cart"]));
+                    <?php
+                    if(!empty($_SESSION["shopping_cart"])) {
+                    $cart_count = count(array_keys($_SESSION["shopping_cart"]));
 
-echo '<div class="box">
-<a href="cart.php"><img src="cart-icon.png" /> Cart<span>'.$cart_count.'</span></a>
-</div>';
-
-}else{
-
-    echo '<div class="box">
-    <a href="cart.php"><img src="cart-icon.png"/> Cart<span>0</span></a>
-    </div>'; 
-}
-?>
-<?php
-     echo '<div style="clear:both;"></div>
-                    
-     <div class="message_box" style="margin:10px 0px;">'.$status.' 
-     </div>';
-?>
+                    echo '<div class="ps-cart--mini box"><a class="header__extra" href="cart.php"><i class="icon-bag2"></i><span><i>'.$cart_count.'</i></span></a></div>';
 
 
+                    }else{
 
-                  
-                        <div class="ps-cart--mini">
-
-                            <!-- <div class="ps-cart__content">
-                                <div class="ps-cart__items">
-                                    <div class="ps-product--cart-mobile">
-                                        <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
-                                        <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                                            <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product--cart-mobile">
-                                        <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
-                                        <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
-                                            <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-cart__footer">
-                                    <h3>Sub Total:<strong>$59.99</strong></h3>
-                                    <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a></figure>
-                                </div>
-                            </div> -->
-                        </div>
+                        echo '<div class="ps-cart--mini box"><a class="header__extra" href="cart.php"><i class="icon-bag2"></i><span><i>0</i></span></a></div>'; 
+                    }
+                    ?>
                         <div class="ps-block--user-header">
-                            <div class="ps-block__left"><i class="icon-user"></i></div>
-                             <div class="ps-block__right">
                                <?php 
-                               if(!isset( $_SESSION['user_id'])){
-                                   echo ' <a href="'.GEN_WEBSITE.'/login.php">Login</a>';
-                               }else{
-
-                                echo ' <a href="'.GEN_WEBSITE.'/logout.php">Logout</a>';
-                               }
+                               if(isset( $_SESSION['user_id'])){
+                                echo ' <div class="ps-block__left"> <i class="icon-user"></i></div>
+                                    <div class="ps-block__right">
+                                  <a href="'.GEN_WEBSITE.'/logout.php">Logout</a>
+                              
+                               
+                            </div>'; }
                                ?> 
-                            
-                            </div>
                         </div> 
                         
                     </div>
@@ -180,12 +144,6 @@ echo '<div class="box">
                                         }
 
                                     ?>
-
-                                
-                                
-                                
-                               
-                               
                             </ul>
                         </div>
                     </div>
@@ -207,14 +165,10 @@ echo '<div class="box">
         </nav>
     </header>
     <header class="header header--mobile" data-sticky="true">
-        <div class="header__top">
-            <div class="header__left">
-                <p>Welcome to <?=$website_name_with_spaces;?></p>
-            </div>
-            <div class="header__right">
-               
-            </div>
-        </div>
+        <?php
+            echo '<div style="clear:both;"></div>'.$status.''
+                ;
+        ?>
         <div class="navigation--mobile">
             <div class="navigation__left">
                 <a class="ps-logo" href="/"><img src="images/logo/logo.jpg" alt="<?php if(!empty($website_name_with_spaces)){
@@ -231,17 +185,14 @@ echo '<div class="box">
 
 
                     <?php 
-                               if(!isset( $_SESSION['user_id'])){
-                                   echo ' <a href="'.GEN_WEBSITE.'/login.php"><i class="icon-user"></i></a>';
-                               }else{
-
-                                echo ' <a href="'.GEN_WEBSITE.'/logout.php"><i class="icon-user"></i></a>';
+                               if(isset( $_SESSION['user_id'])){
+                                   echo ' 
+                                   <div class="ps-block__right">
+                                   <a href="'.GEN_WEBSITE.'/logout.php"><i class="icon-user"></i>Logout</a>
+                                   </div>';
                                }
                                ?> 
                     
-                    
-                 
-                        
                     </div>
 
 

@@ -43,12 +43,18 @@ $select_products3 = mysqli_query($connect,"SELECT * FROM ".$statement." LIMIT $s
         }
         echo    '
 
-        <form method="POST" action=""> 
-        <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-            <div class="ps-product__actions">
-                <button type="submit"><i class="icon-bag2"></i></button>
-            </div>
-        </form>
+         <ul class="ps-product__actions">
+                    
+                    
+
+            <form method="POST" action="">
+                <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+                <button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+            </form>
+                    
+                    
+
+        </ul>
         
         
         </div>

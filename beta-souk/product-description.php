@@ -88,7 +88,7 @@ while($rows_loop = mysqli_fetch_array($query_sel_pro_sec)){
 <form method="POST" action=""> 
         <input type="hidden" name="code" value="<?php echo $rows_loop['products_id']; ?>" />
            
-            <button class="ps-btn d-block d-sm-block" type="submit" name="buy_button"> Buy Now</button>
+            <button class="ps-btn d-block d-sm-block" type="submit" name="buy_button">Add to Cart</button>
            
         </form>
 

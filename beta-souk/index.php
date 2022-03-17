@@ -159,9 +159,9 @@ if(isset($_SESSION['user_id'])){
                     
 
                     <form method="POST" action="">
-                    <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-                   <button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
-                   </form>
+                        <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
+                        <button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+                    </form>
                     
                     
 
@@ -298,7 +298,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>
@@ -416,7 +416,7 @@ echo '
                                         '<ul class="ps-product__actions">
                                         <form method="POST" action="">
                                         <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-                                       <button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+                                       <button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
                                        </form>
                                         </ul>
                                      </div>
@@ -532,7 +532,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>
@@ -648,7 +648,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>
@@ -764,7 +764,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>
@@ -880,7 +880,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>
@@ -996,7 +996,7 @@ echo    '
 <ul class="ps-product__actions">
 <form method="POST" action="">
 <input type="hidden" name="code" value="'.$rows_loop['products_id'].'" />
-<button type="submit"><li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
+<button type="submit" class="btn-fade"><li><a data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li></button>
 </form>
 
 </ul>

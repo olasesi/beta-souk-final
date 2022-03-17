@@ -65,29 +65,8 @@
 
 </div>
 <div class="ps-site-overlay"></div>
-<div class="ps-panel--sidebar" id="cart-mobile">
-    <div class="ps-panel__header">
-        <h3>Shopping Cart</h3>
-    </div>
-    <div class="navigation__content">
-        <div class="ps-cart--mobile">
-            <div class="ps-cart__content">
-                <div class="ps-product--cart-mobile">
-                    <div class="ps-product__thumbnail">
-                        <a href="#"><img src="img/products/clothing/7.jpg" alt=""></a>
-                    </div>
-                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
-                    </div>
-                </div>
-            </div>
-            <div class="ps-cart__footer">
-                <h3>Sub Total:<strong>$59.99</strong></h3>
-                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a></figure>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <!--include ../../data/menu/menu-product-categories-->
 <div class="ps-panel--sidebar" id="navigation-mobile">
     <div class="ps-panel__header">
@@ -121,8 +100,21 @@
     </div>
 </div>
 <div class="navigation--list">
-    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-menu"></i><span> Menu</span></a><a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a>
-        <a class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a><a class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a></div>
+    <div class="navigation__content">
+        <a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-menu"></i><span> Menu</span></a>
+        <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a>
+        <a class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a>
+        <!-- <a class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a></div> -->
+
+        <?php
+            if(!empty($_SESSION["shopping_cart"])) {
+                $cart_count = count(array_keys($_SESSION["shopping_cart"]));
+                echo '<a class="navigation__item" href="cart.php"><i class="icon-bag2"></i><span class="d-flex"> Cart <span class="mobile-cart">'.$cart_count.'</span></span></a></div>';
+            }else{
+                echo '<a class="navigation__item" href="cart.php"><i class="icon-bag2"></i><span class="d-flex"> Cart <span class="mobile-cart">0</span></span></a></div>'; 
+            }
+        ?>
+
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
     <div class="ps-panel__header">

@@ -50,6 +50,17 @@ a:hover {
     background-color: #eee;    
 }
 
+.widget_contact-us .widget_content h3 {
+    color: #4d4ae6;
+
+}
+
+.back2top:hover {
+    cursor: pointer;
+    background-color: #4d4ae6;
+    border-color: #4d4ae6;
+  }
+
 /************************************************************ Sidebar header in Mobile menu*****************************************/
 .ps-panel--sidebar .ps-panel__header {
     background-color: #4d4ae6;

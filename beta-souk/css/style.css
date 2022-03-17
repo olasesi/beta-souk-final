@@ -1903,6 +1903,49 @@ button {
   transition-delay: 0.3s;
 }
 
+
+.btn-fade {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.mobile-cart {
+  margin: 0px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 50%;
+}
+
+.header {
+  position: relative;
+}
+
+.message_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* background-color: #0077B5; */
+  text-align: center;
+  height: 40px;
+}
+
+.message_box .box {
+  font-size: 16px;
+  color: #fff;
+}
+
 #scrool {
   position: fixed;
   display: flex;
@@ -1945,11 +1988,7 @@ button {
   color: #000;
 }
 
-.back2top:hover {
-  cursor: pointer;
-  background-color: #fcb800;
-  border-color: #fcb800;
-}
+
 
 .whatsapp i { 
   z-index: 10020;
@@ -6995,6 +7034,11 @@ textarea.form-control {
   position: relative;
   padding-bottom: 20px;
   margin-bottom: 20px;
+}
+
+.ps-footer .widget {
+  width: 350px
+
 }
 
 .widget .widget-title {
