@@ -14,7 +14,7 @@ if(!isset($_SESSION['user_id'])){
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
 	 
-    if (preg_match ('/^[a-z A-Z]{3,20}$/i', trim($_POST['products_name']))) {	
+    if (preg_match ('/^[a-z A-Z0-9_-]{3,20}$/i', trim($_POST['products_name']))) {	
 		$products_name = mysqli_real_escape_string ($connect, trim($_POST['products_name']));
 	} else {
 		$errors['products_name'] = 'Please enter valid name.';
@@ -460,6 +460,7 @@ if(isset($_GET['confirm_modify']) AND $_GET['confirm_modify'] == 1){
 
 
                         ?>
+                        <label style="color:#00000080">Max upload 2MB | *png, jpg</label>
                                             </div>
                                         </div> 
 

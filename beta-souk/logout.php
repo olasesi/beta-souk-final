@@ -1,6 +1,6 @@
 <?php
 require_once ('../incs-template1/config.php'); 
-include_once ('../incs-template1/cookie-session'); 
+include_once ('../incs-template1/cookie-session.php'); 
 if(!isset ($_SESSION['user_id'])){ 
 	header("Location:".GEN_WEBSITE);
 	exit();

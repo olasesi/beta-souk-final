@@ -44,7 +44,7 @@ while($row_cat = mysqli_fetch_array($query_page_section)){
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
 	 
-    if (preg_match ('/^[a-z A-Z]{3,20}$/i', trim($_POST['products_name']))) {	
+    if (preg_match ('/^[a-z A-Z0-9_-]{3,20}$/i', trim($_POST['products_name']))) {	
 		$products_name = mysqli_real_escape_string ($connect, trim($_POST['products_name']));
 	} else {
 		$errors['products_name'] = 'Please enter valid name.';
@@ -556,6 +556,7 @@ if(isset ($_POST['products_categories'])){
 
 
                         ?>
+                        <label style="color:#00000080">Max upload 2MB | *png, jpg</label>
                                             </div>
                                         </div> 
 
